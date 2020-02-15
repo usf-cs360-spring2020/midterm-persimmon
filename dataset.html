@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- TODO: Change title -->
+    <title>Persimmon</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+
+  <body>
+
+  <!-- Page header -->
+  <!-- https://bulma.io/documentation/layout/hero/ -->
+  <section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Persimmon</h1>
+        <h2 class="subtitle">Welcome to the home of team Persimmon's data visualization midterm project</h2>
+      </div>
+    </div>
+  </section>
+  <!-- End page header -->
+
+  <!-- Page navigation -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <!-- TODO: Change link to repository homepage if needed -->
+        <!-- TODO: Change which navbar-item is-active if needed -->
+        <a class="navbar-item is-active" href="index.html">
+          <span class="icon"><i class="fas fa-home"></i></span>
+          <span>Home</span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="main-menu" class="navbar-menu has-text-weight-medium">
+        <!-- Left navbar items -->
+        <div class="navbar-start">
+          <a class="navbar-item" href="dataset.html" title="Data">
+            <span class="icon"><i class="fas fa-table"></i></span>
+            <span>Data</span>
+          </a>
+        </div>
+
+        <!-- Right navbar items -->
+        <div class="navbar-end">
+          <!-- TODO: Update as needed -->
+          <a class="navbar-item" href="about.html" title="About">
+            <span class="icon"><i class="fas fa-info-circle"></i></span>
+            <span>About</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- End page navigation -->
+
+  <section class="section">
+    <div class="container">
+      <!-- Begin page content -->
+      <div class="content">
+        <h1 class="title">
+          Data
+        </h1>
+        
+        <p>We use the <a href="https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3">Fire Department Calls for Service</a> dataset from <a href="https://datasf.org/opendata/">DataSF</a>.
+          This dataset includes all fire units responses to calls. Calls can involve multiple units so their can be many rows with the same call number. The license for the data is as follows:
+        </p>
+
+        <blockquote>
+          <p>
+            "This data is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: <a href="http://www.opendatacommons.org/licenses/pddl/1.0/">www.opendatacommons.org/licenses/pddl/1.0/</a>"
+          </p>
+          <cite>OpenData. 2020. Fire Department Calls for Service [CSV File]. Retrieved from 
+            <a href="https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3">https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3</a> on Feb 13, 2020.</cite>
+        </blockquote>
+
+        <p>
+          Overview of the dataset:<br />
+          <div class="tags is-centered">
+            <span class="tag is-info is-medium">Rows: &nbsp;<b>5.2M</b></span>
+            <span class="tag is-info is-medium">Columns: &nbsp;<b>34</b></span>
+            <span class="tag is-info is-medium">Each row is a &nbsp;<b>Call Response</b></span>
+            <span class="tag is-info is-medium">Data is updated:&nbsp;<b>Daily</b> </span>
+          </div>
+        </p>
+
+        <p>The Fire Department Calls for Service dataset contains the following columns:<br/>
+          <em>Note: Highlighted columns represent data we will target in our visualizations</em>
+        </p>
+        <div class="table-container">
+          <table class="table is-hoverable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Column</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Values</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>1</th>
+                <td>Call Number</td>
+                <td>A unique 9-digit number assigned by the 911 Dispatch Center (DEM) to this call. These number are used for both Police and Fire calls.</td>
+                <td>Text</td>
+                <td>[200430004, 200444351,...]</td>
+              </tr>
+              <tr>
+                <th>2</th>
+                <td>Unit ID</td>
+                <td>Unit Identifier. For example E01 for Engine 1 or T01 for Truck 1.</td>
+                <td>Text</td>
+                <td>[73, E19,...]</td>
+              </tr>
+              <tr>
+                <th>3</th>
+                <td>Incident Number</td>
+                <td>A unique 8-digit number assigned by DEM to this Fire incident.</td>
+                <td>Text</td>
+                <td>[20019300, 20019299,...]</td>
+              </tr>
+              <tr class="is-selected">
+                <th>4</th>
+                <td>Call Type</td>
+                <td>Type of call the incident falls into.</td>
+                <td>Text</td>
+                <td>[Medical Incident, Alarms,...]</td>
+              </tr>
+              <tr>
+                <th>5</th>
+                <td>Call Date</td>
+                <td>Date the call is received at the 911 Dispatch Center. Used for reporting purposes.</td>
+                <td>Date & Time</td>
+                <td>[04/12/2000-02/13/2020]</td>
+              </tr>
+              <tr>
+                <th>6</th>
+                <td>Watch Date</td>
+                <td>Watch date when the call is received. Watch date starts at 0800 each morning and ends at 0800 the next day.</td>
+                <td>Date & Time</td>
+                <td>[04/12/2000-02/13/2020]</td>
+              </tr>
+              <tr class="is-selected">
+                <th>7</th>
+                <td>Received DtTm</td>
+                <td>Date and time of call is received at the 911 Dispatch Center.</td>
+                <td>Date & Time</td>
+                <td>[2000 Apr 12 09:00:29 PM - 2020 Feb 13 11:59:15 PM]</td>
+              </tr>
+              <tr>
+                <th>8</th>
+                <td>Entry DtTm</td>
+                <td>Date and time the 911 operator submits the entry of the initical call information into the CAD system</td>
+                <td>Date & Time</td>
+                <td>[2000 Apr 12 09:01:40 PM - 2020 Feb 13 11:58:02 PM]</td>
+              </tr>
+              <tr class="is-selected">
+                <th>9</th>
+                <td>Dispatch DtTm</td>
+                <td>Date and time the 911 operator dispatches this unit to the call.</td>
+                <td>Date & Time</td>
+                <td>[2000 Apr 12 09:02:00 PM - 2020 Feb 13 11:59:22 PM]</td>
+              </tr>
+              <tr class="is-selected">
+                <th>10</th>
+                <td>Response DtTm</td>
+                <td>Date and time this unit acknowledges the dispatch and records that the unit is en route to the location of the call.</td>
+                <td>Date & Time</td>
+                <td>[2000 Apr 12 09:11:51 PM, ...] (can be blanks)</td>
+              </tr>
+              <tr class="is-selected">
+                <th>11</th>
+                <td>On Scene DtTm</td>
+                <td>Date and time the unit records arriving to the location of the incident</td>
+                <td>Date & Time</td>
+                <td>[2000 Apr 12 09:14:11 PM ...] (can be blanks)</td>
+              </tr>
+              <tr>
+                <th>12</th>
+                <td>Transport DtTm</td>
+                <td>If this unit is an ambulance, date and time the unit begins the transport unit arrives to hospital</td>
+                <td>Date & Time</td>
+                <td>[2000 Apr 12 09:38:18 PM ...] (can be blanks)</td>
+              </tr>
+              <tr>
+                <th>13</th>
+                <td>Hospital DtTm</td>
+                <td>If this unit is an ambulance, date and time the unit arrives to the hospital.</td>
+                <td>Date & Time</td>
+                <td>[2000 Apr 12 09:48:13 PM ...] (can be blanks)</td>
+              </tr>
+              <tr>
+                <th>14</th>
+                <td>Call Final Disposition</td>
+                <td>Disposition of the call (Code). For example TH2: Transport to Hospital - Code 2, FIR: Resolved by Fire Department</td>
+                <td>Text</td>
+                <td>[Other, Fire, Unable to Locate, SFPD,...]</td>
+              </tr>
+              <tr>
+                <th>15</th>
+                <td>Available DtTm</td>
+                <td>Date and time this unit is not longer assigned to this call and it is available for another dispatch.</td>
+                <td>Date & Time</td>
+                <td>[2000 Apr 12 09:20:36 PM ...] (can be blanks)</td>
+              </tr>
+              <tr>
+                <th>16</th>
+                <td>Address</td>
+                <td>Address of midblock point associated with incident (obfuscated address to protect caller privacy)</td>
+                <td>Text</td>
+                <td>[100 Block of CAMBON DR,...]</td>
+              </tr>
+              <tr>
+                <th>17</th>
+                <td>City</td>
+                <td>City of incident</td>
+                <td>Text</td>
+                <td>[San Francisco, SAN FRANCISCO, Hunters Point,...] (can be blanks)</td>
+              </tr>
+              <tr>
+                <th>18</th>
+                <td>Zipcode of Incident</td>
+                <td>Zipcode of incident</td>
+                <td>Text</td>
+                <td>[94132, 94107,...]</td>
+              </tr>
+              <tr>
+                <th>19</th>
+                <td>Battalion</td>
+                <td>Emergency Response District (There are 9 Fire Emergency Response Districts)</td>
+                <td>Text</td>
+                <td>[B08, B07, B02,...]</td>
+              </tr>
+              <tr class="is-selected">
+                <th>20</th>
+                <td>Station Area</td>
+                <td>Fire Station First Response Area associated with the address of the incident</td>
+                <td>Text</td>
+                <td>[19, 40,...]</td>
+              </tr>
+              <tr>
+                <th>21</th>
+                <td>Box</td>
+                <td>Fire box associated with the address of the incident. A box is the smallest area used to divide the City. Each box is associated with a unique unit dispatch order. The City is divided into more than 2,400 boxes.</td>
+                <td>Text</td>
+                <td>[8428, 7433,...]</td>
+              </tr>
+              <tr>
+                <th>22</th>
+                <td>Original Priority</td>
+                <td>Initial call priority (Code 2: Non-Emergency or Code 3:Emergency).</td>
+                <td>Text</td>
+                <td>[E, 3, 2, 1]</td>
+              </tr>
+              <tr>
+                <th>23</th>
+                <td>Priority</td>
+                <td>Call priority (Code 2: Non-Emergency or Code 3:Emergency).</td>
+                <td>Text</td>
+                <td>[3, 2, 1]</td>
+              </tr>
+              <tr>
+                <th>24</th>
+                <td>Final Priority</td>
+                <td>Final call priority (Code 2: Non-Emergency or Code 3:Emergency).</td>
+                <td>Text</td>
+                <td>[3, 2, 1]</td>
+              </tr>
+              <tr>
+                <th>25</th>
+                <td>ALS Unit</td>
+                <td>Does this unit includes ALS (Advance Life Support) resources? Is there a paramedic in this unit?</td>
+                <td>Boolean (True/False)</td>
+                <td>[True, False]</td>
+              </tr>
+              <tr class="is-selected">
+                <th>26</th>
+                <td>Call Type Group</td>
+                <td>Call types are divided into four main groups: Fire, Alarm, Potential Life Threatening and Non Life Threatening.</td>
+                <td>Text</td>
+                <td>[Non Life-threatening, Potentially Life-Threatening, Alarm, Fire,...]</td>
+              </tr>
+              <tr>
+                <th>27</th>
+                <td>Number of Alarms</td>
+                <td>Number of alarms associated with the incident. This is a number between 1 and 5.</td>
+                <td>Numeric</td>
+                <td>[1-5]</td>
+              </tr>
+              <tr class='is-selected'>
+                <th>28</th>
+                <td>Unit Type</td>
+                <td>Unit type</td>
+                <td>Text</td>
+                <td>[MEDIC, TRUCK, ENGINE, CHIEF, PRIVATE, RESCUE SQUAD]</td>
+              </tr>
+              <tr>
+                <th>29</th>
+                <td>Unit sequence in call dispatch</td>
+                <td>A number that indicates the order this unit was assigned to this call</td>
+                <td>Numeric</td>
+                <td>[1-83] (can be blank)</td>
+              </tr>
+              <tr class="is-selected">
+                <th>30</th>
+                <td>Location</td>
+                <td>Latitude and longitude of address obfuscated either to the midblock, intersection or call box</td>
+                <td>Coordinates</td>
+                <td>[(37.758510055874°, -122.420168825295°),...]</td>
+              </tr>
+              <tr>
+                <th>31</th>
+                <td>Fire Prevention District</td>
+                <td>Bureau of Fire Prevention District associated with this address</td>
+                <td>Text</td>
+                <td>[1-6] (can be blank)</td>
+              </tr>
+              <tr>
+                <th>32</th>
+                <td>Supervisor District</td>
+                <td>Supervisor District associated with this address</td>
+                <td>Text</td>
+                <td>[5, 6,...] (can be blank)</td>
+              </tr>
+              <tr class="is-selected">
+                <th>33</th>
+                <td>Neighborhoods - Analysis Boundaries</td>
+                <td>Neighborhood District associated with this address, boundaries available <a href="https://data.sfgov.org/d/p5b7-5n3h">here</a></td>
+                <td>Text</td>
+                <td>[Mission, Nob Hill, Tenderloin, Golden Gate Park,...]</td>
+              </tr>
+              <tr>
+                <th>34</th>
+                <td>RowID</td>
+                <td>Unique identifier used for managing data updates. It is the concatenation of Call Number and Unit ID separated by a dash</td>
+                <td>Text</td>
+                <td>[180311463-T19,...]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- End page content -->
+    </div>
+  </section>
+
+  <!-- Page footer -->
+  <!-- https://bulma.io/documentation/layout/footer/ -->
+  <footer class="footer">
+    <div class="content has-text-centered is-size-7">
+      <p>
+        <a href="#top">
+          <span class="fas fa-arrow-up"></span>
+          <span class="has-text-weight-medium">Back to Top</span>
+        </a>
+      </p>
+
+      <p>
+        <!-- TODO: Change to link to your Github repository -->
+        <a href="https://github.com/usf-cs360-spring2020/template-bulma" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
+        </a>
+
+        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
+        </a>
+
+        <a href="https://bulma.io" class="button is-small">
+          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
+        </a>
+      </p>
+    </div>
+  </footer>
+  <!-- End page footer -->
+
+  <!-- Mobile menu responsiveness -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
+  </script>
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>

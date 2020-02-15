@@ -1,0 +1,21 @@
+.my_svg {
+    background-color: whitesmoke;
+    border: 1px solid lightgrey;
+}
+
+#background {
+    fill: white;
+}
+
+.chart-image-container {
+    background-color: whitesmoke;
+    border: 1px solid lightgrey;
+    text-align: center;
+    max-width: 809px;
+    max-height: 530px;
+}
+.chart {
+    margin: 15px;
+    width: 734px;
+    height: 500px;
+}

@@ -1,0 +1,9 @@
+theme: jekyll-theme-dinky
+
+# Added information below.
+title: "Persimmon"
+description: "Github Pages website for CS 360/560 Data Visualization midterm project."
+
+# Enables using emoji. See: https://help.github.com/en/articles/emoji-on-github-pages
+plugins:
+  - jemoji
