@@ -1,6 +1,6 @@
 # Persimmon
 
-Website: *<https://usf-cs360-spring2020.github.io/midterm-persimmon/releases/tag/v0.1.0>*
+Website: *<https://usf-cs360-spring2020.github.io/midterm-persimmon/>*
 
 ![Profile Image](assets/kai_middlebrook_profile.jpg)
 
