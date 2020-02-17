@@ -77,8 +77,8 @@
           Data
         </h1>
 
-        <p>We use the <a href="https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3">Fire Department Calls for Service</a> dataset from <a href="https://datasf.org/opendata/">DataSF</a>.
-          This dataset includes all fire units responses to calls. Calls can involve multiple units so there can be many rows with the same call number. The license for the data is as follows:
+        <p>We will use the <a href="https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3">Fire Department Calls for Service</a> dataset from <a href="https://datasf.org/opendata/">DataSF</a>.
+          This dataset includes all fire units' responses to calls. Calls can involve multiple units so there can be many rows with the same call number. The license for the data is as follows:
         </p>
 
         <!-- Data License -->
@@ -176,7 +176,7 @@
               <tr>
                 <th>8</th>
                 <td>Entry DtTm</td>
-                <td>Date and time the 911 operator submits the entry of the initical call information into the CAD system</td>
+                <td>Date and time the 911 operator submits the entry of the initical call information into the CAD system.</td>
                 <td>Date & Time</td>
                 <td>[2000 Apr 12 09:01:40 PM - 2020 Feb 13 11:58:02 PM]</td>
               </tr>
@@ -197,28 +197,28 @@
               <tr class="is-selected">
                 <th>11</th>
                 <td>On Scene DtTm</td>
-                <td>Date and time the unit records arriving to the location of the incident</td>
+                <td>Date and time the unit records arriving to the location of the incident.</td>
                 <td>Date & Time</td>
                 <td>[2000 Apr 12 09:14:11 PM ...] (can be blanks)</td>
               </tr>
               <tr>
                 <th>12</th>
                 <td>Transport DtTm</td>
-                <td>If this unit is an ambulance, date and time the unit begins the transport unit arrives to hospital</td>
+                <td>If this unit is an ambulance, date and time the unit begins driving to the hospital. Otherwise, blank.</td>
                 <td>Date & Time</td>
                 <td>[2000 Apr 12 09:38:18 PM ...] (can be blanks)</td>
               </tr>
               <tr>
                 <th>13</th>
                 <td>Hospital DtTm</td>
-                <td>If this unit is an ambulance, date and time the unit arrives to the hospital.</td>
+                <td>If this unit is an ambulance, date and time the unit arrives at the hospital.</td>
                 <td>Date & Time</td>
                 <td>[2000 Apr 12 09:48:13 PM ...] (can be blanks)</td>
               </tr>
               <tr>
                 <th>14</th>
                 <td>Call Final Disposition</td>
-                <td>Disposition of the call (Code). For example TH2: Transport to Hospital - Code 2, FIR: Resolved by Fire Department</td>
+                <td>Disposition of the call (Code). For example TH2: Transport to Hospital - Code 2, FIR: Resolved by Fire Department.</td>
                 <td>Text</td>
                 <td>[Other, Fire, Unable to Locate, SFPD,...]</td>
               </tr>
@@ -232,42 +232,42 @@
               <tr>
                 <th>16</th>
                 <td>Address</td>
-                <td>Address of midblock point associated with incident (obfuscated address to protect caller privacy)</td>
+                <td>Address of midblock point associated with incident (obfuscated address to protect caller privacy).</td>
                 <td>Text</td>
                 <td>[100 Block of CAMBON DR,...]</td>
               </tr>
               <tr>
                 <th>17</th>
                 <td>City</td>
-                <td>City of incident</td>
+                <td>City of Incident.</td>
                 <td>Text</td>
                 <td>[San Francisco, SAN FRANCISCO, Hunters Point,...] (can be blanks)</td>
               </tr>
               <tr>
                 <th>18</th>
                 <td>Zipcode of Incident</td>
-                <td>Zipcode of incident</td>
+                <td>Zipcode of incident.</td>
                 <td>Text</td>
-                <td>[94132, 94107,...]</td>
+                <td>[94132, 94107, 94118...]</td>
               </tr>
               <tr>
                 <th>19</th>
                 <td>Battalion</td>
-                <td>Emergency Response District (There are 9 Fire Emergency Response Districts)</td>
+                <td>Emergency Response District. (There are 9 Fire Emergency Response Districts.)</td>
                 <td>Text</td>
                 <td>[B08, B07, B02,...]</td>
               </tr>
               <tr class="is-selected">
                 <th>20</th>
                 <td>Station Area</td>
-                <td>Fire Station First Response Area associated with the address of the incident</td>
+                <td>Fire Station First Response Area associated with the address of the incident.</td>
                 <td>Text</td>
                 <td>[19, 40,...]</td>
               </tr>
               <tr>
                 <th>21</th>
                 <td>Box</td>
-                <td>Fire box associated with the address of the incident. A box is the smallest area used to divide the City. Each box is associated with a unique unit dispatch order. The City is divided into more than 2,400 boxes.</td>
+                <td>Fire box associated with the address of the incident. A box is the smallest area used to divide the city. Each box is associated with a unique unit dispatch order. The city is divided into more than 2,400 boxes.</td>
                 <td>Text</td>
                 <td>[8428, 7433,...]</td>
               </tr>
@@ -302,7 +302,7 @@
               <tr class="is-selected">
                 <th>26</th>
                 <td>Call Type Group</td>
-                <td>Call types are divided into four main groups: Fire, Alarm, Potential Life Threatening and Non Life Threatening.</td>
+                <td>Call types are divided into four main groups: Fire, Alarm, Potential Life-Threatening, and Non Life-Threatening.</td>
                 <td>Text</td>
                 <td>[Non Life-threatening, Potentially Life-Threatening, Alarm, Fire,...]</td>
               </tr>
@@ -323,7 +323,7 @@
               <tr>
                 <th>29</th>
                 <td>Unit sequence in call dispatch</td>
-                <td>A number that indicates the order this unit was assigned to this call</td>
+                <td>A number that indicates the order this unit was assigned to this call.</td>
                 <td>Numeric</td>
                 <td>[1-83] (can be blank)</td>
               </tr>
@@ -337,28 +337,28 @@
               <tr>
                 <th>31</th>
                 <td>Fire Prevention District</td>
-                <td>Bureau of Fire Prevention District associated with this address</td>
+                <td>Bureau of Fire Prevention District associated with this address.</td>
                 <td>Text</td>
                 <td>[1-6] (can be blank)</td>
               </tr>
               <tr>
                 <th>32</th>
                 <td>Supervisor District</td>
-                <td>Supervisor District associated with this address</td>
+                <td>Supervisor District associated with this address.</td>
                 <td>Text</td>
                 <td>[5, 6,...] (can be blank)</td>
               </tr>
               <tr class="is-selected">
                 <th>33</th>
                 <td>Neighborhoods - Analysis Boundaries</td>
-                <td>Neighborhood District associated with this address, boundaries available <a href="https://data.sfgov.org/d/p5b7-5n3h">here</a></td>
+                <td>Neighborhood District associated with this address, boundaries available <a href="https://data.sfgov.org/d/p5b7-5n3h">here.</a></td>
                 <td>Text</td>
                 <td>[Mission, Nob Hill, Tenderloin, Golden Gate Park,...]</td>
               </tr>
               <tr>
                 <th>34</th>
                 <td>RowID</td>
-                <td>Unique identifier used for managing data updates. It is the concatenation of Call Number and Unit ID separated by a dash</td>
+                <td>Unique identifier used for managing data updates. It is the concatenation of Call Number and Unit ID separated by a dash.</td>
                 <td>Text</td>
                 <td>[180311463-T19,...]</td>
               </tr>
@@ -367,6 +367,15 @@
         </div>
       </div>
       <!-- End page content -->
+      <div class = "header" fontsize= "30px">
+      <h1>
+        <b>Wrangling And Processesing Data</b>
+      </h1>
+      </div>
+      <p>
+        None yet! Will update soon!
+      </p>
+
     </div>
   </section>
 
