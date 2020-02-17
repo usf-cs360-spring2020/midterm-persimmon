@@ -76,16 +76,17 @@
         <h1 class="title">
           Data
         </h1>
-        
+
         <p>We use the <a href="https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3">Fire Department Calls for Service</a> dataset from <a href="https://datasf.org/opendata/">DataSF</a>.
           This dataset includes all fire units responses to calls. Calls can involve multiple units so their can be many rows with the same call number. The license for the data is as follows:
         </p>
 
+        <!-- Data License -->
         <blockquote>
           <p>
             "This data is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: <a href="http://www.opendatacommons.org/licenses/pddl/1.0/">www.opendatacommons.org/licenses/pddl/1.0/</a>"
           </p>
-          <cite>OpenData. 2020. Fire Department Calls for Service [CSV File]. Retrieved from 
+          <cite>OpenData. 2020. Fire Department Calls for Service [CSV File]. Retrieved from
             <a href="https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3">https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3</a> on Feb 13, 2020.</cite>
         </blockquote>
 
@@ -100,11 +101,13 @@
         </p>
 
         <p>The Fire Department Calls for Service dataset contains the following columns:<br/>
-          <em>Note: Highlighted columns represent data we will target in our visualizations</em>
+          <em>Note: Highlighted columns represent data we will tentatively target in our visualizations</em>
         </p>
         <div class="table-container">
           <table class="table is-hoverable">
+            <!-- the top row of data table -->
             <thead>
+              <!-- the column names -->
               <tr>
                 <th>#</th>
                 <th>Column</th>
@@ -113,14 +116,19 @@
                 <th>Values</th>
               </tr>
             </thead>
+            <!-- Body of the rest of the data table -->
             <tbody>
+              <!-- Rows -->
               <tr>
+                <!-- Row 1 -->
+                <!-- th = bold font, td = not bold font -->
                 <th>1</th>
                 <td>Call Number</td>
                 <td>A unique 9-digit number assigned by the 911 Dispatch Center (DEM) to this call. These number are used for both Police and Fire calls.</td>
                 <td>Text</td>
                 <td>[200430004, 200444351,...]</td>
               </tr>
+              <!-- Row 2 -->
               <tr>
                 <th>2</th>
                 <td>Unit ID</td>
