@@ -158,11 +158,13 @@
                 <td>[Medical Incident, Alarms, Structure Fire,...]</td>
               </tr>
               <tr>
+                <tr class='is-selected'>
                 <th>5</th>
                 <td>Call Date</td>
                 <td>Date the call is received at the 911 Dispatch Center. Used for reporting purposes.</td>
                 <td>Date & Time</td>
                 <td>[04/12/2000-02/13/2020]</td>
+              </tr>
               </tr>
               <tr>
                 <th>6</th>
@@ -379,7 +381,12 @@
       </div>
       <!-- TODO: Add data wrangling -->
       <p>
-        Coming soon!
+        We filtered the data from DataSF to grab only the calls that occured in 2019.
+        and in San Francisco.
+        Then, we used Python to continue wrangling data by extracting only the columns
+        we need.
+        <br> Python wrangling code can be found here:<a href = "SFFireCallsWrangling.py"> SFFireCallsWrangling.py </a>
+        <br> Our new, selected dataset is here: <a href = "FireDepartmentCallsSelected.csv"> FireDepartmentCallsSelected.csv </a>
       </p>
 
     </div>
