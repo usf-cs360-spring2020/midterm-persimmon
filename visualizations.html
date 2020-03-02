@@ -90,17 +90,40 @@
           </p>
 
 
-        <h2> Tableau Prototype </h2>
+        <h2> Tableau Prototype 1</h2>
         <h4> Artist: Justine Huynh</h4>
         <img src = "ALS_Support(J).png" height = 960 width = 500>
         <p> This prototype supports the theme of quality of the SF Fire Department responses.
-        Even if none of the patients require Advance Life Support (ALS),
-      ambulances that carry ALS resources show great safety precaution in the event where future patients
-    <i>do</i> need ALS. Such a safety precaution greatly increases overall quality of care.
-    </p>
-    <h4> Planned Interactivity</h4>
-    <p> When the mouse hovers over the bar, users can see a nice table of 3 values:
-    Neighborhood, whether the cases had ALS resources, and the number of cases. </p>
+          Even if none of the patients require Advance Life Support (ALS),
+          ambulances that carry ALS resources show great safety precaution in the event where future patients
+          <i>do</i> need ALS. Such a safety precaution greatly increases overall quality of care.
+        </p>
+        <h4> Planned Interactivity</h4>
+        <p> When the mouse hovers over the bar, users can see a nice table of 3 values:
+        Neighborhood, whether the cases had ALS resources, and the number of cases. </p>
+      </div>
+      <br />
+      <h2> Tableau Prototype 2</h2>
+        <h4> Artist: Kai Middlebrook</h4>
+        <img src = "assets/NormalizedDifferenceDispatchOnSceneHeatmap.png" height = 900 width = 600>
+        <p> This prototype aligns with the theme of assessing the response time by neighborhoods of the SF Fire Department.
+          The heatmap displays the average normalized difference between the dispatch time and on scene time. The visualization
+          indicates that units on scene time for calls related to fire in neighborhoods such as Glen Park and Lone Mountain/USF
+          have the largest average normalized difference. In other words, if there is a fire in either of these neighborhoods you
+          can expect fire units to arrive later than the average on scene time. A number of factors may influence the on scene time
+          such as the distance between an available fire station and the call location, accessibility of the location, etc. Both of these
+          neighborhoods are very compact and located on or near hills, which may be the reason for long on scene time wait times.
+        </p>
+        <h4>Data Wrangling</h4>
+        <p> This data was created on top of our dataset (<a href = "FireDepartmentCallsSelected.csv"> FireDepartmentCallsSelected.csv </a>).
+          This new dataset excludes all rows with missing data (approximately 19%). In addition, 6 new columns were added: 
+          diff_received_to_onScene, diff_dispatch_to_onScene, diff_response_to_onScene, norm_diff_received_to_onScene, norm_diff_dispatch_to_onScene norm_diff_response_to_onScene. The columns containing diff_* calculated the difference between the on scene time and a response time metric
+          (i.e. received, dispatch, response). Then the data was filtered to exclued all rows were the on scene time was before the response time metric (approximately ~0.01%). Finally, the norm_diff_* columns were created. Each of these columns contains the normalized difference between on scene time and the respective response metric. The code to reproduce the dataset is available as a jupyter notebook: 
+          <a href="">Filtered and Normalized Fire Data</a>
+        </p>
+        <h4> Planned Interactivity</h4>
+        <p> When the mouse hovers over a cross-section of the heatmap, the user will see a nice table of 3 values:
+        neighborhood, call type group, and the average normalized difference between dispatch time and on scene time. </p>
       </div>
       <!-- End page content -->
     </div>
