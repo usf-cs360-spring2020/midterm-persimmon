@@ -118,8 +118,8 @@
         <p> This data was created on top of our dataset (<a href = "FireDepartmentCallsSelected.csv"> FireDepartmentCallsSelected.csv </a>).
           This new dataset excludes all rows with missing data (approximately 19%). In addition, 6 new columns were added: 
           diff_received_to_onScene, diff_dispatch_to_onScene, diff_response_to_onScene, norm_diff_received_to_onScene, norm_diff_dispatch_to_onScene norm_diff_response_to_onScene. The columns containing diff_* calculated the difference between the on scene time and a response time metric
-          (i.e. received, dispatch, response). Then the data was filtered to exclued all rows were the on scene time was before the response time metric (approximately ~0.01%). Finally, the norm_diff_* columns were created. Each of these columns contains the normalized difference between on scene time and the respective response metric. The code to reproduce the dataset is available as a jupyter notebook: 
-          <a href="">Filtered and Normalized Fire Data</a>
+          (i.e. received, dispatch, response). Then the data was filtered to exclued all rows were the on scene time was before the response time metric (approximately ~0.01%). Finally, the norm_diff_* columns were created. Each of these columns contains the normalized difference between on scene time and the respective response metric. The dataset can be found here: <a href="FireDepartmentCallsSelectedNAFilteredWithDiffs.csv">Filtered and Normalized Fire Data</a>. The code to reproduce this dataset is available as a jupyter notebook: 
+          <a href="https://github.com/usf-cs360-spring2020/midterm-persimmon/blob/gh-pages/data_wrangling_kai.ipynb">Filtered and Normalized Fire Data Notebook</a>
         </p>
         <h4> Planned Interactivity</h4>
         <p> When the mouse hovers over a cross-section of the heatmap, the user will see a nice table of 3 values:
