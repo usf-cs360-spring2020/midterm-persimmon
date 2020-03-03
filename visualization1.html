@@ -22,12 +22,11 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">Persimmon</h1>
-        <h2 class="subtitle">Welcome to Team Persimmon's Data Visualization Midterm Project!</h2>
+        <h2 class="subtitle">Welcome to the home of team Persimmon's data visualization midterm project!</h2>
       </div>
     </div>
   </section>
   <!-- End page header -->
-
   <!-- Page navigation -->
   <!-- https://bulma.io/documentation/components/navbar/ -->
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
@@ -35,7 +34,7 @@
       <div class="navbar-brand">
         <!-- TODO: Change link to repository homepage if needed -->
         <!-- TODO: Change which navbar-item is-active if needed -->
-        <a class="navbar-item is-active" href="index.html">
+        <a class="navbar-item" href="index.html">
           <span class="icon"><i class="fas fa-home"></i></span>
           <span>Home</span>
         </a>
@@ -55,7 +54,8 @@
             <span class="icon"><i class="fas fa-table"></i></span>
             <span>Data</span>
           </a>
-          <a class = "navbar-item" href = "visualization1.html" title = "Visualization 1">
+          <!-- Visualizations Icon -->
+          <a class = "navbar-item is-active" href = "visualization1.html" title = "Visualization 1">
             <span class="icon"><i class="fas fa-paint-brush"></i></span>
             <span>Visualization 1</span>
           </a>
@@ -72,6 +72,7 @@
         <!-- Right navbar items -->
         <div class="navbar-end">
           <!-- TODO: Update as needed -->
+          <!-- About Icon -->
           <a class="navbar-item" href="about.html" title="About">
             <span class="icon"><i class="fas fa-info-circle"></i></span>
             <span>About</span>
@@ -82,28 +83,33 @@
   </nav>
   <!-- End page navigation -->
 
+
+
   <section class="section">
     <div class="container">
       <!-- Begin page content -->
       <div class="content">
         <h1 class="title">
-          Visualizing San Francisco Fire Department Calls for Service
+          Visualizing The Data
         </h1>
-        <p>
-          For this project, we will use the <a href="https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3">Fire Department Calls for Service</a> dataset from DataSF. Our focus is neighborhood data to visualize with respect to
-          response time and quality of response from the fire department. Visuals will investigate a number of groups across neighborhoods including: unit type, station area, ALS unit, call type group, dispatch, response, and on scene time.
-          We are interested in comparing dispatch times between San Francisco neighberhoods and determining whether certain neighborhoods receive faster dispatch as well as measuring how effective the responses are.
+        <p>This page currently includes the prototypes for our visualizations.</p>
+
+        <h2>Tableau Prototype 1</h2>
+        <h4>Artist: Justine Huynh</h4>
+        <img src = "ALS_Support(J).png" height = 960 width = 500>
+        <p> This prototype supports the theme of quality of the SF Fire Department responses.
+          Even if none of the patients require Advance Life Support (ALS),
+          ambulances that carry ALS resources show great safety precaution in the event where future patients
+          <i>do</i> need ALS. Such a safety precaution greatly increases overall quality of care.
         </p>
-        <p>Learn more about the dataset on our <a href="dataset.html">data page</a>.
-          <br>
-          Learn more about our team on our <a href="about.html">about page.</a>
-          <br> Learn more about our visualizations on our <a href = "visualizations.html"> visualizations page. </a>
-        </p>
+        <h4> Planned Interactivity</h4>
+        <p> When the mouse hovers over the bar, users can see a nice table of 3 values:
+        Neighborhood, whether the cases had ALS resources, and the number of cases. </p>
+      <br />
       </div>
       <!-- End page content -->
     </div>
   </section>
-
   <!-- Page footer -->
   <!-- https://bulma.io/documentation/layout/footer/ -->
   <footer class="footer">
@@ -154,5 +160,4 @@
   </script>
   <!-- End mobile menu responsiveness -->
   </body>
-
 </html>
