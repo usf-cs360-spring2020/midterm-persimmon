@@ -34,7 +34,7 @@
       <div class="navbar-brand">
         <!-- TODO: Change link to repository homepage if needed -->
         <!-- TODO: Change which navbar-item is-active if needed -->
-        <a class="navbar-item" href="index.html">
+        <a class="navbar-item is-active" href="index.html">
           <span class="icon"><i class="fas fa-home"></i></span>
           <span>Home</span>
         </a>
@@ -55,17 +55,9 @@
             <span>Data</span>
           </a>
           <!-- Visualizations Icon -->
-          <a class = "navbar-item is-active" href = "visualization1.html" title = "Visualization 1">
+          <a class = "navbar-item" href = "visualizations.html" title = "Visualizations">
             <span class="icon"><i class="fas fa-paint-brush"></i></span>
-            <span>Visualization 1</span>
-          </a>
-          <a class = "navbar-item" href = "visualization2.html" title = "Visualization 2">
-            <span class="icon"><i class="fas fa-paint-brush"></i></span>
-            <span>Visualization 2</span>
-          </a>
-          <a class = "navbar-item" href = "visualization3.html" title = "Visualization 3">
-            <span class="icon"><i class="fas fa-paint-brush"></i></span>
-            <span>Visualization 3</span>
+            <span>Visualizations</span>
           </a>
         </div>
 
@@ -83,43 +75,32 @@
   </nav>
   <!-- End page navigation -->
 
+
+
   <section class="section">
     <div class="container">
       <!-- Begin page content -->
       <div class="content">
         <h1 class="title">
-          Prototype 1
+          Visualizing The Data
         </h1>
-
-        <h4>Artist: Justine Huynh</h4>
-        <img src = "ALS_Support(J).png" height = 940 width = 900>
-        <p> This prototype supports the theme of quality of the SF Fire Department responses.
-          Even if none of the patients require Advance Life Support (ALS),
-          ambulances that carry ALS resources show great safety precaution in the event where future patients
-          <i>do</i> need ALS. Such a safety precaution greatly increases overall quality of care.
-        </p>
-        <!-- <div class = "header" style="font-size: 12px;"> -->
-        <h1>
-          <b>Wrangling and Processesing Data</b>
-        </h1>
-
-        <!-- TODO: Add data wrangling -->
         <p>
-          We filtered the data from DataSF to grab only the calls that occured in 2019.
-          and in San Francisco.
-          Then, we used Python to continue wrangling data by extracting only the columns
-          we need: Call Type, Call Date, Received DtTm, Dispatch DtTm, Response DtTm, On Scene DtTm, Station Area,
-          ALS Unit, Call Type Group, Unit Type, Location, Neighborhooods - Analysis Boundaries.
-          <br> Python wrangling code can be found here:<a href = "SFFireCallsWrangling.py"> SFFireCallsWrangling.py </a>
-          <br> Our new, selected dataset is here: <a href = "FireDepartmentCallsSelected.csv"> FireDepartmentCallsSelected.csv </a>
-        </p>
+          This page will be used for visualizing data.
+          We will be drawing beautiful, informative graphs. Stay tuned!
+          </p>
 
-        <!-- </div> -->
 
-        <h4> Planned Interactivity</h4>
-        <p> When the mouse hovers over the bar, users can see a nice table of 3 values:
-        Neighborhood, whether the cases had ALS resources, and the number of cases. </p>
-      <br />
+        <h2> Tableau Prototype </h2>
+        <h4> Artist: Justine Huynh</h4>
+        <img src = "ALS_Support(J).png" height = 960 width = 500>
+        <p> This prototype supports the theme of quality of the SF Fire Department responses.
+        Even if none of the patients require Advance Life Support (ALS),
+      ambulances that carry ALS resources show great safety precaution in the event where future patients
+    <i>do</i> need ALS. Such a safety precaution greatly increases overall quality of care.
+    </p>
+    <h4> Planned Interactivity</h4>
+    <p> When the mouse hovers over the bar, users can see a nice table of 3 values:
+    Neighborhood, whether the cases had ALS resources, and the number of cases. </p>
       </div>
       <!-- End page content -->
     </div>
