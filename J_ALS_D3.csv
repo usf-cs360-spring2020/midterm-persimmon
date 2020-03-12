@@ -1,0 +1,85 @@
+Neighborhoods,ALS Unit,Frequency
+Bayview Hunters Point,False,5265
+Bayview Hunters Point,True,11401
+Bernal Heights,False,1851
+Bernal Heights,True,3524
+Castro/Upper Market,False,2965
+Castro/Upper Market,True,4937
+Chinatown,False,2014
+Chinatown,True,3627
+Excelsior,False,1458
+Excelsior,True,4705
+Financial District/South Beach,False,7783
+Financial District/South Beach,True,14675
+Glen Park,False,529
+Glen Park,True,1077
+Golden Gate Park,False,646
+Golden Gate Park,True,943
+Haight Ashbury,False,1741
+Haight Ashbury,True,2395
+Hayes Valley,False,2926
+Hayes Valley,True,4974
+Inner Richmond,False,1804
+Inner Richmond,True,2234
+Inner Sunset,False,2197
+Inner Sunset,True,2422
+Japantown,False,1039
+Japantown,True,1740
+Lakeshore,False,1812
+Lakeshore,True,3357
+Lincoln Park,False,185
+Lincoln Park,True,147
+Lone Mountain/USF,False,1516
+Lone Mountain/USF,True,2117
+Marina,False,2580
+Marina,True,3646
+McLaren Park,False,178
+McLaren Park,True,256
+Mission,False,8901
+Mission,True,19837
+Mission Bay,False,2239
+Mission Bay,True,3118
+Nob Hill,False,4763
+Nob Hill,True,5575
+Noe Valley,False,1317
+Noe Valley,True,1885
+None,False,53
+None,True,99
+North Beach,False,2951
+North Beach,True,3394
+Oceanview/Merced/Ingleside,False,1191
+Oceanview/Merced/Ingleside,True,2688
+Outer Mission,False,1092
+Outer Mission,True,3183
+Outer Richmond,False,3163
+Outer Richmond,True,4486
+Pacific Heights,False,3503
+Pacific Heights,True,3196
+Portola,False,708
+Portola,True,2137
+Potrero Hill,False,2753
+Potrero Hill,True,2891
+Presidio,False,215
+Presidio,True,233
+Presidio Heights,False,1016
+Presidio Heights,True,1515
+Russian Hill,False,2447
+Russian Hill,True,2221
+Seacliff,False,247
+Seacliff,True,280
+South of Market,False,10034
+South of Market,True,24922
+Sunset/Parkside,False,4361
+Sunset/Parkside,True,6924
+Tenderloin,False,14496
+Tenderloin,True,31323
+Treasure Island,False,158
+Treasure Island,True,306
+Twin Peaks,False,753
+Twin Peaks,True,1126
+Visitacion Valley,False,987
+Visitacion Valley,True,2305
+West of Twin Peaks,False,2196
+West of Twin Peaks,True,4850
+Western Addition,False,3949
+Western Addition,True,6670
