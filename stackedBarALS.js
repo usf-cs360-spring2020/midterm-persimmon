@@ -25,10 +25,12 @@ function stackBar(csv) {
   var y = d3.scaleLinear()
 	.rangeRound([height - margin.bottom, margin.top]);
 
+  // xAxis
   var xAxis = svg.append("g")
 		.attr("transform", translate(0, height - margin.bottom))
 		.attr("class", "x-axis");
 
+  // Y Axis
   var yAxis = svg.append("g")
 		.attr("transform", translate(margin.left, 0))
 		.attr("class", "y-axis");
@@ -38,6 +40,8 @@ function stackBar(csv) {
 		.range(["red", "yellow"])
 		.domain(myKeys);
   // so red = true, yellow = false
+
+  y.domain([0, d3.max(csv, d => d3.sum(myKeys, k => +d[k]))]).nice();
 }
 
 /*

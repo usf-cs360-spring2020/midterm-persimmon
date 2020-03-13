@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-ALSdf = pd.read_csv("C:\\Users\\jghuynh\\Documents\\Data_Visualization_360\\midterm-persimmon\\FireDepartmentCallsSelected.csv")
+originalALSdf = pd.read_csv("C:\\Users\\jghuynh\\Documents\\Data_Visualization_360\\midterm-persimmon\\FireDepartmentCallsSelected.csv")
 print("Done!")
 #%%
 
@@ -33,9 +33,11 @@ pd.DataFrame({'Neighborhoods': neighborSeries.index, "ALS": neighborSeries.value
 
 '''
 
-neighborSeries = ALSdf.groupby(["Neighborhooods - Analysis Boundaries", "ALS Unit"]).size()
+neighborSeries = originalALSdf.groupby(["Neighborhooods - Analysis Boundaries", "ALS Unit"]).size()
 #.groupby(level=0).size()#.agg({"Neighborhoods": "Count"})
 ## FRICK YES BABY!!!!
+
+neighborSeriesOneLine = originalALSdf.groupby(["Neighborhooods - Analysis Boundaries", "ALS Unit"]).size().groupby(level=0).size()
 ALSdf = neighborSeries.to_frame().reset_index()
 
 ALSdf = ALSdf.rename(columns= {0: 'Frequency', "Neighborhooods - Analysis Boundaries" :"Neighborhoods"})
