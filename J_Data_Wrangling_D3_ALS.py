@@ -10,7 +10,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 originalALSdf = pd.read_csv("C:\\Users\\jghuynh\\Documents\\Data_Visualization_360\\midterm-persimmon\\FireDepartmentCallsSelected.csv")
-print("Done!")
 #%%
 
 '''
@@ -39,11 +38,22 @@ neighborSeries = originalALSdf.groupby(["Neighborhooods - Analysis Boundaries", 
 
 neighborSeriesOneLine = originalALSdf.groupby(["Neighborhooods - Analysis Boundaries", "ALS Unit"]).size().groupby(level=0).size()
 ALSdf = neighborSeries.to_frame().reset_index()
-
+ALSdf2 = neighborSeries.to_frame().reset_index()
 ALSdf = ALSdf.rename(columns= {0: 'Frequency', "Neighborhooods - Analysis Boundaries" :"Neighborhoods"})
+ALSdf2 = ALSdf.rename(columns= {0: 'Frequency', "Neighborhooods - Analysis Boundaries" :"Neighborhoods"})
+
+mergedDF = pd.merge(ALSdf, ALSdf2, how = "inner", on = ["Neighborhoods", "ALS Unit"])
+
+oneLineMerged = mergedDF[mergedDF["ALS Unit"] != False]
+# so now oneLineMerged is a dataframe with 1 row per neighborhood
+
+# changing column names..
+#oneLineMerged = oneLineMerged.rename(columns = {"Frequency_x": "WithALSUnit", "Frequency_y" : "WithoutALSUnit"})
+
+
 values, freq = np.unique(ALSdf["ALS Unit"], return_counts = True)
 
-ALSdf.to_csv("J_ALS_D3.csv", encoding='utf-8', index=False)
+#ALSdf.to_csv("J_ALS_D3.csv", encoding='utf-8', index=False)
 
 
 
