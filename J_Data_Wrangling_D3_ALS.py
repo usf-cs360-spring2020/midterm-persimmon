@@ -47,10 +47,22 @@ mergedDF = pd.merge(ALSdf, ALSdf2, how = "inner", on = ["Neighborhoods", "ALS Un
 oneLineMerged = mergedDF[mergedDF["ALS Unit"] != False]
 # so now oneLineMerged is a dataframe with 1 row per neighborhood
 
+temp = pd.merge(ALSdf, ALSdf2, how = "inner", on = ["Neighborhoods"])
+tempMerged = temp[temp["ALS Unit_x"] == False]
+tempMergedOneLine = tempMerged[temp["ALS Unit_y"] == True]
+
+#temp.to_csv("temp.csv", encoding = "utf-8", index = False)
+#tempMerged.to_csv("tempMerged.csv", encoding = "utf-8", index = False)
+
+
+tempMergedOneLine = tempMergedOneLine.rename(columns = {"Frequency_x": "WithoutALSUnit","Frequency_y" : "WithALSUnit"})
+
 # changing column names..
 #oneLineMerged = oneLineMerged.rename(columns = {"Frequency_x": "WithALSUnit", "Frequency_y" : "WithoutALSUnit"})
 
-
+# I want my columsn to be: Neighborhoods, WithALSUnit, WithoutALSUnit
+tempMergedOneLine = tempMergedOneLine[["Neighborhoods", "WithALSUnit", "WithoutALSUnit"]]
+tempMergedOneLine.to_csv("J_ALS_D3.csv", encoding = "utf-8", index = False)
 values, freq = np.unique(ALSdf["ALS Unit"], return_counts = True)
 
 #ALSdf.to_csv("J_ALS_D3.csv", encoding='utf-8', index=False)
