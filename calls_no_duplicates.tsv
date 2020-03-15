@@ -1,169 +1,165 @@
-Call Type Group	Neighborhooods - Analysis Boundaries	Number of Records
-Potentially Life-Threatening	Western Addition	4968
-Potentially Life-Threatening	West of Twin Peaks	2927
-Potentially Life-Threatening	Visitacion Valley	1709
-Potentially Life-Threatening	Twin Peaks	760
-Potentially Life-Threatening	Treasure Island	189
-Potentially Life-Threatening	Tenderloin	25972
-Potentially Life-Threatening	Sunset/Parkside	5279
-Potentially Life-Threatening	South of Market	19887
-Potentially Life-Threatening	Seacliff	156
-Potentially Life-Threatening	Russian Hill	1881
-Potentially Life-Threatening	Presidio Heights	933
-Potentially Life-Threatening	Presidio	70
-Potentially Life-Threatening	Potrero Hill	2333
-Potentially Life-Threatening	Portola	1404
-Potentially Life-Threatening	Pacific Heights	2545
-Potentially Life-Threatening	Outer Richmond	3281
-Potentially Life-Threatening	Outer Mission	2148
-Potentially Life-Threatening	Oceanview/Merced/Ingleside	1965
-Potentially Life-Threatening	North Beach	2869
-Potentially Life-Threatening	None	85
-Potentially Life-Threatening	Noe Valley	1139
-Potentially Life-Threatening	Nob Hill	4638
-Potentially Life-Threatening	Mission Bay	2193
-Potentially Life-Threatening	Mission	14441
-Potentially Life-Threatening	McLaren Park	127
-Potentially Life-Threatening	Marina	2234
-Potentially Life-Threatening	Lone Mountain/USF	1501
-Potentially Life-Threatening	Lincoln Park	88
-Potentially Life-Threatening	Lakeshore	1858
-Potentially Life-Threatening	Japantown	1366
-Potentially Life-Threatening	Inner Sunset	1828
-Potentially Life-Threatening	Inner Richmond	1691
-Potentially Life-Threatening	Hayes Valley	3573
-Potentially Life-Threatening	Haight Ashbury	1734
-Potentially Life-Threatening	Golden Gate Park	703
-Potentially Life-Threatening	Glen Park	718
-Potentially Life-Threatening	Financial District/South Beach	9777
-Potentially Life-Threatening	Excelsior	3330
-Potentially Life-Threatening	Chinatown	2451
-Potentially Life-Threatening	Castro/Upper Market	3556
-Potentially Life-Threatening	Bernal Heights	2420
-Potentially Life-Threatening	Bayview Hunters Point	8075
-Non Life-threatening	Western Addition	2586
-Non Life-threatening	West of Twin Peaks	1972
-Non Life-threatening	Visitacion Valley	804
-Non Life-threatening	Twin Peaks	438
-Non Life-threatening	Treasure Island	152
-Non Life-threatening	Tenderloin	11459
-Non Life-threatening	Sunset/Parkside	3035
-Non Life-threatening	South of Market	9007
-Non Life-threatening	Seacliff	99
-Non Life-threatening	Russian Hill	1054
-Non Life-threatening	Presidio Heights	607
-Non Life-threatening	Presidio	74
-Non Life-threatening	Potrero Hill	1230
-Non Life-threatening	Portola	885
-Non Life-threatening	Pacific Heights	1486
-Non Life-threatening	Outer Richmond	1811
-Non Life-threatening	Outer Mission	1315
-Non Life-threatening	Oceanview/Merced/Ingleside	897
-Non Life-threatening	North Beach	1515
-Non Life-threatening	None	43
-Non Life-threatening	Noe Valley	704
-Non Life-threatening	Nob Hill	2286
-Non Life-threatening	Mission Bay	1384
-Non Life-threatening	Mission	7754
-Non Life-threatening	McLaren Park	89
-Non Life-threatening	Marina	1235
-Non Life-threatening	Lone Mountain/USF	980
-Non Life-threatening	Lincoln Park	40
-Non Life-threatening	Lakeshore	1421
-Non Life-threatening	Japantown	737
-Non Life-threatening	Inner Sunset	992
-Non Life-threatening	Inner Richmond	1005
-Non Life-threatening	Hayes Valley	1780
-Non Life-threatening	Haight Ashbury	942
-Non Life-threatening	Golden Gate Park	528
-Non Life-threatening	Glen Park	353
-Non Life-threatening	Financial District/South Beach	5304
-Non Life-threatening	Excelsior	1541
-Non Life-threatening	Chinatown	1514
-Non Life-threatening	Castro/Upper Market	2252
-Non Life-threatening	Bernal Heights	1423
-Non Life-threatening	Bayview Hunters Point	3939
-Fire	Western Addition	194
-Fire	West of Twin Peaks	183
-Fire	Visitacion Valley	182
-Fire	Twin Peaks	59
-Fire	Treasure Island	109
-Fire	Tenderloin	384
-Fire	Sunset/Parkside	441
-Fire	South of Market	441
-Fire	Seacliff	78
-Fire	Russian Hill	238
-Fire	Presidio Heights	56
-Fire	Presidio	278
-Fire	Potrero Hill	351
-Fire	Portola	101
-Fire	Pacific Heights	143
-Fire	Outer Richmond	529
-Fire	Outer Mission	181
-Fire	Oceanview/Merced/Ingleside	121
-Fire	North Beach	307
-Fire	None	6
-Fire	Noe Valley	83
-Fire	Nob Hill	140
-Fire	Mission Bay	251
-Fire	Mission	837
-Fire	McLaren Park	42
-Fire	Marina	254
-Fire	Lone Mountain/USF	130
-Fire	Lincoln Park	100
-Fire	Lakeshore	290
-Fire	Japantown	33
-Fire	Inner Sunset	87
-Fire	Inner Richmond	103
-Fire	Hayes Valley	195
-Fire	Haight Ashbury	157
-Fire	Golden Gate Park	143
-Fire	Glen Park	73
-Fire	Financial District/South Beach	801
-Fire	Excelsior	160
-Fire	Chinatown	102
-Fire	Castro/Upper Market	263
-Fire	Bernal Heights	325
-Fire	Bayview Hunters Point	1231
-Alarm	Western Addition	2814
-Alarm	West of Twin Peaks	1902
-Alarm	Visitacion Valley	572
-Alarm	Twin Peaks	617
-Alarm	Treasure Island	14
-Alarm	Tenderloin	7643
-Alarm	Sunset/Parkside	2460
-Alarm	South of Market	5421
-Alarm	Seacliff	192
-Alarm	Russian Hill	1472
-Alarm	Presidio Heights	924
-Alarm	Presidio	12
-Alarm	Potrero Hill	1697
-Alarm	Portola	429
-Alarm	Pacific Heights	2501
-Alarm	Outer Richmond	1989
-Alarm	Outer Mission	617
-Alarm	Oceanview/Merced/Ingleside	866
-Alarm	North Beach	1607
-Alarm	None	18
-Alarm	Noe Valley	1265
-Alarm	Nob Hill	3199
-Alarm	Mission Bay	1488
-Alarm	Mission	5584
-Alarm	McLaren Park	176
-Alarm	Marina	2483
-Alarm	Lone Mountain/USF	990
-Alarm	Lincoln Park	104
-Alarm	Lakeshore	1566
-Alarm	Japantown	628
-Alarm	Inner Sunset	1678
-Alarm	Inner Richmond	1226
-Alarm	Hayes Valley	2309
-Alarm	Haight Ashbury	1286
-Alarm	Golden Gate Park	211
-Alarm	Glen Park	453
-Alarm	Financial District/South Beach	6510
-Alarm	Excelsior	1081
-Alarm	Chinatown	1547
-Alarm	Castro/Upper Market	1795
-Alarm	Bernal Heights	1141
-Alarm	Bayview Hunters Point	3271
+Call Type Group	Neighborhooods - Analysis Boundaries	Count of Dedupe
+Potentially Life-Threatening	Western Addition	2309
+Potentially Life-Threatening	West of Twin Peaks	1331
+Potentially Life-Threatening	Visitacion Valley	762
+Potentially Life-Threatening	Twin Peaks	375
+Potentially Life-Threatening	Treasure Island	53
+Potentially Life-Threatening	Tenderloin	11430
+Potentially Life-Threatening	Sunset/Parkside	2342
+Potentially Life-Threatening	South of Market	8888
+Potentially Life-Threatening	Seacliff	68
+Potentially Life-Threatening	Russian Hill	798
+Potentially Life-Threatening	Presidio Heights	424
+Potentially Life-Threatening	Presidio	29
+Potentially Life-Threatening	Potrero Hill	1016
+Potentially Life-Threatening	Portola	634
+Potentially Life-Threatening	Pacific Heights	1152
+Potentially Life-Threatening	Outer Richmond	1419
+Potentially Life-Threatening	Outer Mission	917
+Potentially Life-Threatening	Oceanview/Merced/Ingleside	856
+Potentially Life-Threatening	North Beach	1228
+Potentially Life-Threatening	Noe Valley	505
+Potentially Life-Threatening	Nob Hill	2018
+Potentially Life-Threatening	Mission Bay	987
+Potentially Life-Threatening	Mission	6493
+Potentially Life-Threatening	McLaren Park	47
+Potentially Life-Threatening	Marina	1024
+Potentially Life-Threatening	Lone Mountain/USF	691
+Potentially Life-Threatening	Lincoln Park	34
+Potentially Life-Threatening	Lakeshore	822
+Potentially Life-Threatening	Japantown	650
+Potentially Life-Threatening	Inner Sunset	815
+Potentially Life-Threatening	Inner Richmond	709
+Potentially Life-Threatening	Hayes Valley	1666
+Potentially Life-Threatening	Haight Ashbury	796
+Potentially Life-Threatening	Golden Gate Park	269
+Potentially Life-Threatening	Glen Park	316
+Potentially Life-Threatening	Financial District/South Beach	4409
+Potentially Life-Threatening	Excelsior	1464
+Potentially Life-Threatening	Chinatown	1126
+Potentially Life-Threatening	Castro/Upper Market	1629
+Potentially Life-Threatening	Bernal Heights	1008
+Potentially Life-Threatening	Bayview Hunters Point	3462
+Non Life-threatening	Western Addition	1737
+Non Life-threatening	West of Twin Peaks	1249
+Non Life-threatening	Visitacion Valley	539
+Non Life-threatening	Twin Peaks	295
+Non Life-threatening	Treasure Island	67
+Non Life-threatening	Tenderloin	8088
+Non Life-threatening	Sunset/Parkside	1948
+Non Life-threatening	South of Market	6526
+Non Life-threatening	Seacliff	53
+Non Life-threatening	Russian Hill	679
+Non Life-threatening	Presidio Heights	382
+Non Life-threatening	Presidio	37
+Non Life-threatening	Potrero Hill	815
+Non Life-threatening	Portola	537
+Non Life-threatening	Pacific Heights	931
+Non Life-threatening	Outer Richmond	1136
+Non Life-threatening	Outer Mission	845
+Non Life-threatening	Oceanview/Merced/Ingleside	593
+Non Life-threatening	North Beach	1035
+Non Life-threatening	Noe Valley	432
+Non Life-threatening	Nob Hill	1563
+Non Life-threatening	Mission Bay	955
+Non Life-threatening	Mission	5561
+Non Life-threatening	McLaren Park	49
+Non Life-threatening	Marina	814
+Non Life-threatening	Lone Mountain/USF	614
+Non Life-threatening	Lincoln Park	27
+Non Life-threatening	Lakeshore	854
+Non Life-threatening	Japantown	469
+Non Life-threatening	Inner Sunset	645
+Non Life-threatening	Inner Richmond	631
+Non Life-threatening	Hayes Valley	1200
+Non Life-threatening	Haight Ashbury	702
+Non Life-threatening	Golden Gate Park	301
+Non Life-threatening	Glen Park	214
+Non Life-threatening	Financial District/South Beach	3673
+Non Life-threatening	Excelsior	999
+Non Life-threatening	Chinatown	1046
+Non Life-threatening	Castro/Upper Market	1602
+Non Life-threatening	Bernal Heights	914
+Non Life-threatening	Bayview Hunters Point	2565
+Fire	Western Addition	95
+Fire	West of Twin Peaks	55
+Fire	Visitacion Valley	38
+Fire	Twin Peaks	18
+Fire	Treasure Island	39
+Fire	Tenderloin	220
+Fire	Sunset/Parkside	112
+Fire	South of Market	218
+Fire	Seacliff	11
+Fire	Russian Hill	41
+Fire	Presidio Heights	16
+Fire	Presidio	25
+Fire	Potrero Hill	133
+Fire	Portola	35
+Fire	Pacific Heights	53
+Fire	Outer Richmond	98
+Fire	Outer Mission	43
+Fire	Oceanview/Merced/Ingleside	41
+Fire	North Beach	56
+Fire	Noe Valley	26
+Fire	Nob Hill	77
+Fire	Mission Bay	97
+Fire	Mission	399
+Fire	McLaren Park	19
+Fire	Marina	48
+Fire	Lone Mountain/USF	24
+Fire	Lincoln Park	12
+Fire	Lakeshore	61
+Fire	Japantown	12
+Fire	Inner Sunset	29
+Fire	Inner Richmond	36
+Fire	Hayes Valley	110
+Fire	Haight Ashbury	57
+Fire	Golden Gate Park	70
+Fire	Glen Park	14
+Fire	Financial District/South Beach	311
+Fire	Excelsior	39
+Fire	Chinatown	59
+Fire	Castro/Upper Market	126
+Fire	Bernal Heights	131
+Fire	Bayview Hunters Point	484
+Alarm	Western Addition	990
+Alarm	West of Twin Peaks	746
+Alarm	Visitacion Valley	206
+Alarm	Twin Peaks	238
+Alarm	Treasure Island	9
+Alarm	Tenderloin	2664
+Alarm	Sunset/Parkside	1090
+Alarm	South of Market	1956
+Alarm	Seacliff	71
+Alarm	Russian Hill	512
+Alarm	Presidio Heights	335
+Alarm	Presidio	5
+Alarm	Potrero Hill	627
+Alarm	Portola	182
+Alarm	Pacific Heights	852
+Alarm	Outer Richmond	748
+Alarm	Outer Mission	243
+Alarm	Oceanview/Merced/Ingleside	319
+Alarm	North Beach	521
+Alarm	Noe Valley	479
+Alarm	Nob Hill	1120
+Alarm	Mission Bay	520
+Alarm	Mission	1970
+Alarm	McLaren Park	58
+Alarm	Marina	875
+Alarm	Lone Mountain/USF	347
+Alarm	Lincoln Park	34
+Alarm	Lakeshore	640
+Alarm	Japantown	242
+Alarm	Inner Sunset	617
+Alarm	Inner Richmond	437
+Alarm	Hayes Valley	864
+Alarm	Haight Ashbury	458
+Alarm	Golden Gate Park	110
+Alarm	Glen Park	174
+Alarm	Financial District/South Beach	2261
+Alarm	Excelsior	409
+Alarm	Chinatown	553
+Alarm	Castro/Upper Market	673
+Alarm	Bernal Heights	407
+Alarm	Bayview Hunters Point	1200
