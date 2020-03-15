@@ -6,11 +6,11 @@
 barSeries = null;
 
 var barData = d3.csv("J_ALS_D3.csv").then(d => stackBar(d));
-// barSeries = d3.stack()
-//     .keys(barData.columns.slice(0))
-//   (data)
-//     .map(d => (d.forEach(v => v.key = d.key), d));
-// console.log("barSeries", barSeries);
+barSeries = d3.stack()
+    .keys(barData.columns.slice(0))
+  (data)
+    .map(d => (d.forEach(v => v.key = d.key), d));
+console.log("barSeries", barSeries);
 function stackBar(csv) {
   var width = 960;
   var height = 500;
@@ -77,6 +77,21 @@ function stackBar(csv) {
 		.attr("x", d => x(d.Neighborhoods))
 		.attr("y", d => y(d[1]))
 		.attr("height", d => y(d[0]) - y(d[1]));
+
+    var text = svg.selectAll(".text")
+			.data(csv, d => d.Neighborhoods);
+
+		text.exit().remove();
+
+		text.enter().append("text")
+			.attr("class", "text")
+			.attr("text-anchor", "middle")
+			.merge(text)
+		// .transition().duration(speed)
+			.attr("x", d => x(d.Neighborhoods) + x.bandwidth() / 2);
+			// .attr("y", d => y(d.total) - 5)
+			// .text(d => d.total)
+console.log("text", text);
 
 }
 
