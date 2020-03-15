@@ -54,14 +54,19 @@ tempMergedOneLine = tempMerged[temp["ALS Unit_y"] == True]
 #temp.to_csv("temp.csv", encoding = "utf-8", index = False)
 #tempMerged.to_csv("tempMerged.csv", encoding = "utf-8", index = False)
 
-
+# changing column names
 tempMergedOneLine = tempMergedOneLine.rename(columns = {"Frequency_x": "WithoutALSUnit","Frequency_y" : "WithALSUnit"})
-
-# changing column names..
-#oneLineMerged = oneLineMerged.rename(columns = {"Frequency_x": "WithALSUnit", "Frequency_y" : "WithoutALSUnit"})
 
 # I want my columsn to be: Neighborhoods, WithALSUnit, WithoutALSUnit
 tempMergedOneLine = tempMergedOneLine[["Neighborhoods", "WithALSUnit", "WithoutALSUnit"]]
+
+# eradicate this one row who has "None" for neighborhoods..
+tempMergedOneLine = tempMergedOneLine[tempMergedOneLine["Neighborhoods"] != "None"]
+
+# sorting
+tempMergedOneLine = tempMergedOneLine.sort_values(["WithALSUnit"], ascending = [False])
+
+# writing to csv file
 tempMergedOneLine.to_csv("J_ALS_D3.csv", encoding = "utf-8", index = False)
 values, freq = np.unique(ALSdf["ALS Unit"], return_counts = True)
 

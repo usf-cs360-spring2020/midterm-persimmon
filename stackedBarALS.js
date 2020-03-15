@@ -1,21 +1,24 @@
 var width = 960;
 var height = 500;
+
+var barData = d3.csvParse(await FileAttachment("J_ALS_D3.csv").text(), (d, i, columns) => (d3.autoType(d), d.total = d3.sum(columns, c => d[c]), d)).sort((a, b) => b.total - a.total)
+console.log("Bar data", barData);
+
 d3.csv("J_ALS_D3.csv").then(d => stackBar(d));
 
 function stackBar(csv) {
-  // var myKeys = csv.columns.slice(1);
-  var myKeys = ["True", "False"];
+  var myKeys = csv.columns.slice(1);
+  // var myKeys = ["WithALSUnit", "WithoutALSUnit"];
   // is there a better way to grab myKeys?
-  // myKeys = ["ALS Unit", "Frequency"]. Length = 2
   console.log("Mykeys:", myKeys);
   console.log("my csv: ", csv);
 
 	var neighborhoods   = [...new Set(csv.map(d => d.Neighborhoods))];
-
+  // neighborhoods = [string list of all neighborhoods in SF]
   var svg = d3.select("svg#stackedBar"),
-  margin = {top: 35, left: 35, bottom: 5, right: 5},
-  width = width - margin.left - margin.right,
-  height = height - margin.top - margin.bottom;
+    margin = {top: 35, left: 35, bottom: 5, right: 5},
+    width = width - margin.left - margin.right,
+    height = height - margin.top - margin.bottom;
 
   // the x axis: Neighborhoods
   var x = d3.scaleBand()
