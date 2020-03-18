@@ -25,14 +25,6 @@ let plot = svg.append('g');
 plot.attr('id', 'plot');
 plot.attr('transform', translate(config.plot.x, config.plot.y));
 
-let rect = plot.append('rect');
-rect.attr('id', 'background');
-
-rect.attr('x', 0);
-rect.attr('y', 0);
-rect.attr('width', config.plot.width);
-rect.attr('height', config.plot.height);
-
 let scale = {};
 
 scale.x = d3.scaleBand();
@@ -44,46 +36,75 @@ scale.y.range([config.plot.height, 0]);
 scale.color = d3.scaleSequential(d3.interpolateOranges);
 
 let axis = {};
+
 axis.x = d3.axisBottom(scale.x);
 axis.x.tickPadding(0);
 
 axis.y = d3.axisLeft(scale.y);
 axis.y.tickPadding(0);
 
-d3.tsv("calls_no_duplicates.tsv").then(draw);
+d3.tsv("calls_no_duplicates.tsv", convertRow).then(draw);
+
+function convertRow(row, index) {
+  let out = {};
+
+  for (let col in row) {
+    switch (col) {
+      case 'CallType':
+        out[col] = row[col];
+        break;
+
+      case 'Neighborhoood':
+        out[col] = row[col];
+        break;
+
+      default:
+        out[col] = parseInt(row[col]);
+    }
+  }
+
+  return out;
+}
 
 function draw(data) {
-  console.log(data);
+  let neighborhoods = d3.set(data.map(function( d ) { return d.Neighborhoood; } )).values();
 
-  let sortColumn = 'Number of Records';
-
-  data = data.sort(function(a, b) {
-    return b[sortColumn] - a[sortColumn];
-  });
-
-  let neighborhoods = ['Bayview Hunters Point', 'Bernal Heights', 'Castro/Upper Market', 'Chinatown', 'Excelsior', 'Financial District/South Beach', 'Glen Park', 'Golden Gate Park', 'Haight Ashbury', 'Hayes Valley', 'Inner Richmond', 'Inner Sunset', 'Japantown', 'Lakeshore', 'Lincoln Park', 'Lone Mountain/USF', 'Marina', 'McLaren Park', 'Mission', 'Mission Bay', 'Nob Hill', 'Noe Valley', 'North Beach', 'Oceanview/Merced/Ingleside', 'Outer Mission', 'Outer Richmond', 'Pacific Heights', 'Portola', 'Potrero Hill', 'Presidio', 'Presidio Heights', 'Russian Hill', 'Seacliff', 'South of Market', 'Sunset/Parkside', 'Tenderloin', 'Treasure Island', 'Twin Peaks', 'Visitacion Valley', 'West of Twin Peaks', 'Western Addition'];
-
-  neighborhoods.reverse();
-
-  let callTypes = ['Potentially Life-Threatening', 'Non Life-threatening', 'Fire', 'Alarm'];
+  let callTypes = d3.set(data.map(function( d ) { return d.CallType; } )).values();
   callTypes.reverse();
 
   scale.x.domain(callTypes);
   scale.y.domain(neighborhoods);
 
-  let gx = svg.append("g");
-  gx.attr("id", "x-axis");
-  gx.attr("class", "axis");
-  gx.attr("transform", translate(config.plot.x, config.plot.y + config.plot.height));
-  gx.call(axis.x);
+  let gx = svg.append("g")
+    .attr("id", "x-axis")
+    .attr("class", "axis")
+    .attr("transform", translate(config.plot.x, config.plot.y + config.plot.height))
+    .call(axis.x);
 
-  let gy = svg.append("g");
-  gy.attr("id", "y-axis");
-  gy.attr("class", "axis");
-  gy.attr("transform", translate(config.plot.x, config.plot.y));
-  gy.call(axis.y);
+  let gy = svg.append("g")
+    .attr("id", "y-axis")
+    .attr("class", "axis")
+    .attr("transform", translate(config.plot.x, config.plot.y))
+    .call(axis.y);
+
+  let counts = data.map(d => d.Count);
+  let min = d3.min(counts);
+  let max = d3.max(counts);
+
+  scale.color.domain([min, max]);
+
+  let cells = plot.selectAll('rect')
+    .data(data)
+    .enter()
+    .append("rect")
+    .attr("x", d => scale.x(d.CallType))
+    .attr("y", d => scale.y(d.Neighborhoood))
+    .attr("width", d => scale.x.bandwidth())
+    .attr("height", d => scale.y.bandwidth())
+    .style("fill", d => scale.color(d.Count))
+    .style("stroke", d => scale.color(d.Count));
 }
 
 function translate(x, y) {
-  return "translate(" + String(x) + "," + String(y) + ")";
+  return 'translate(' + x + ',' + y + ')';
 }
