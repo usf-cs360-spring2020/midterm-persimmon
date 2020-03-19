@@ -84,20 +84,26 @@ function stackBar(data) {
   y.domain([0, d3.max(data, d => d3.sum(myKeys, k => +d[k]))]).nice();
 
   // x domain is the Neighborhoods column
-  x.domain(data.map(d => d.Neighberhoods));
+  x.domain(data.map(d => d.Neighborhoods));
+  console.log("x", x);
+  console.log("y", y);
 
   svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(80, 0)") // what the heck?
+    .data(data)
+    //.attr("transform", "translate(80, 0)") // what the heck?
     .style("stroke", "black") // check this out
-    .call(d3.axisBottom(x).ticks(null, "s")); // what is this?
+    .call(d3.axisBottom(x).ticks(null, "s")) // what is this?
+    .attr("transform", "rotate(0)");
     // because s = "string"?
   svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(80, 420)")
+    .data(data)
+    //.attr("transform", "translate(80, 420)")
     .style("stroke", "black")
     //.call(d3.axisLeft(y).ticks(16, "f").tickFormat(d3.formatPrefix(".0", 1e5)));
     .call(d3.axisLeft(y).ticks(16, "f"));
+
 
   var group = svg.selectAll("g.layer")
 			.data(d3.stack().keys(myKeys)(data), d => d.key);
