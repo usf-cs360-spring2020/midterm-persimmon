@@ -85,15 +85,39 @@ function stackBar(data) {
   // so red = true, yellow = false
 
   var g = svg.append("g")
-    .attr("transform", translate(margin.left, margin.top));
 
-  y.domain([0, d3.max(data, d => d3.sum(myKeys, k => +d[k]))]).nice();
+    .attr("transform", translate(margin.left, margin.top))
 
+    g.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", translate(0, height-margin.bottom))
+    .call(d3.axisBottom(x));
+
+    g.append("g")
+             .attr("class", "axis axis--y")
+             .call(d3.axisLeft(y).ticks(10, "%"))
+           .append("text")
+             .attr("transform", "rotate(-90)")
+             .attr("y", 6)
+             .attr("dy", "0.71em")
+             .attr("text-anchor", "end")
+             .text("Number Of Cases");
+   g.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+          .attr("class", "bar")
+          .attr("x", function(d) { return x(d.Neighborhoods); }) // x(d.Neighborboods)
+          .attr("y", function(d) { return y(d.WithALSUnit); })//y(d.WithALSUnit)
+          .attr("width", x.bandwidth())
+          .attr("height", function(d) { return height - y(d.WithALSUnit); });
+
+  //y.domain([0, d3.max(data, d => d3.sum(myKeys, k => +d[k]))]).nice();
+  x.domain(data.map(function(d) { return d.Neighborboods; }));
+  y.domain([0, d3.max(data, function(d) { return d.WithALSUnit; })]);
   // x domain is the Neighborhoods column
-  x.domain(data.map(d => d.Neighborhoods));
-  console.log("x", x);
-  console.log("y", y);
+  //x.domain(data.map(d => d.Neighborhoods));
 
+// Special thanks to Aditiya's help
   svg.append("g")
     .attr("class", "axis")
     .data(data)
