@@ -1,31 +1,62 @@
 
 
-// var barData = d3.csvParse(await FileAttachment("J_ALS_D3.csv").text(), (d, i, columns) => (d3.autoType(d), d.total = d3.sum(columns, c => d[c]), d)).sort((a, b) => b.total - a.total)
+// var barData = d3.dataParse(await FileAttachment("J_ALS_D3.data").text(), (d, i, columns) => (d3.autoType(d), d.total = d3.sum(columns, c => d[c]), d)).sort((a, b) => b.total - a.total)
 // console.log("Bar data", barData);
 
 barSeries = null;
 
-var barData = d3.csv("J_ALS_D3.csv").then(d => stackBar(d));
-barSeries = d3.stack()
-    .keys(barData.columns.slice(0))
-  (data)
-    .map(d => (d.forEach(v => v.key = d.key), d));
+var barData = d3.csv("J_ALS_D3.csv", convertRow).then(stackBar);
+// barSeries = d3.stack()
+//     .keys(barData.columns.slice(0))
+//   (data)
+//     .map(d => (d.forEach(v => v.key = d.key), d));
+
+
+
+function convertRow(row) {
+ let out = {};
+
+ for (let col in row) {
+   switch (col) {
+     case "WithALSUnit":
+      out[col] = parseInt(row[col]);
+
+     case "WithoutALSUnit":
+        out[col] = parseInt(row[col]);
+    default:
+      out[col] = row[col];
+   }
+ } // for loop
+ return out;
+} // convertRow
 console.log("barSeries", barSeries);
-function stackBar(csv) {
+
+function stackBar(data) {
   var width = 960;
   var height = 500;
-  var myKeys = csv.columns.slice(1);
+  var myKeys = data.columns.slice(1);
   // var myKeys = ["WithALSUnit", "WithoutALSUnit"];
   // is there a better way to grab myKeys?
   console.log("Mykeys:", myKeys);
-  console.log("my csv: ", csv);
+  console.log("my data: ", data);
+  //console.log("data")
 
-	var neighborhoods   = [...new Set(csv.map(d => d.Neighborhoods))];
+	//var neighborhoods   = [...new Set(data.map(d => d.Neighborhoods))];
+  let neighborhoods = data.map(row => row["Neighborhoods"]);
+  console.log("neighborhoods: ", neighborhoods);
+  let numWithALS = data.map(row => row["WithALSUnit"]);
+  let numWithoutALS = data.map(row => row["WithoutALSUnit"]);
+  console.log("numWithALS", numWithALS);
+  console.log("numWithoutALS", numWithoutALS);
+
   // neighborhoods = [string list of all neighborhoods in SF]
   var svg = d3.select("svg#stackedBar"),
     margin = {top: 35, left: 35, bottom: 5, right: 5},
     width = width - margin.left - margin.right,
     height = height - margin.top - margin.bottom;
+  svg.append("g")
+    .attr("transform", translate(margin.left, margin.top));
+
 
   // the x axis: Neighborhoods
   var x = d3.scaleBand()
@@ -50,13 +81,27 @@ function stackBar(csv) {
 		.domain(myKeys);
   // so red = true, yellow = false
 
-  y.domain([0, d3.max(csv, d => d3.sum(myKeys, k => +d[k]))]).nice();
+  y.domain([0, d3.max(data, d => d3.sum(myKeys, k => +d[k]))]).nice();
 
   // x domain is the Neighborhoods column
-  x.domain(csv.map(d => d.Neighberhoods));
+  x.domain(data.map(d => d.Neighberhoods));
+
+  svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(80, 0)") // what the heck?
+    .style("stroke", "black") // check this out
+    .call(d3.axisBottom(x).ticks(null, "s")); // what is this?
+    // because s = "string"?
+  svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(80, 420)")
+    .style("stroke", "black")
+    //.call(d3.axisLeft(y).ticks(16, "f").tickFormat(d3.formatPrefix(".0", 1e5)));
+    .call(d3.axisLeft(y).ticks(16, "f"));
 
   var group = svg.selectAll("g.layer")
-			.data(d3.stack().keys(myKeys)(csv), d => d.key);
+			.data(d3.stack().keys(myKeys)(data), d => d.key);
+  console.log(d3.stack().keys(myKeys)(data));
 
   group.exit().remove()
 
@@ -79,16 +124,16 @@ function stackBar(csv) {
 		.attr("height", d => y(d[0]) - y(d[1]));
 
     var text = svg.selectAll(".text")
-			.data(csv, d => d.Neighborhoods);
+			.data(data, d => d.Neighborhoods);
 
 		text.exit().remove();
 
 		text.enter().append("text")
 			.attr("class", "text")
 			.attr("text-anchor", "middle")
-			.merge(text)
+			.merge(text);
 		// .transition().duration(speed)
-			.attr("x", d => x(d.Neighborhoods) + x.bandwidth() / 2);
+			//.attr("x", d => x(d.Neighborhoods) + x.bandwidth() / 2);
 			// .attr("y", d => y(d.total) - 5)
 			// .text(d => d.total)
 console.log("text", text);
