@@ -52,23 +52,26 @@ function stackBar(data) {
   // neighborhoods = [string list of all neighborhoods in SF]
   var svg = d3.select("svg#stackedBar"),
     margin = {top: 35, left: 35, bottom: 5, right: 5},
-    width = width - margin.left - margin.right,
-    height = height - margin.top - margin.bottom;
+    width = 960 + margin.left + margin.right,
+    height = 500 + margin.top + margin.bottom;
   svg.append("g")
     .attr("transform", translate(margin.left, margin.top));
 
 
   // the x axis: Neighborhoods
   var x = d3.scaleBand()
-		.range([margin.left, width - margin.right])
-		.padding(0.1);
+		//.range([margin.left, width - margin.right])
+    .rangeRound([0, width])
+    .padding(0.1);
 
   var y = d3.scaleLinear()
-	.rangeRound([height - margin.bottom, margin.top]);
+	//.rangeRound([height - margin.bottom, margin.top]);
+  .rangeRound([height, 0])
   // xAxis
   var xAxis = svg.append("g")
 		.attr("transform", translate(0, height - margin.bottom))
 		.attr("class", "x-axis");
+    // .orient("bottom");
 
   // Y Axis
   var yAxis = svg.append("g")
@@ -80,6 +83,9 @@ function stackBar(data) {
 		.range(["red", "yellow"])
 		.domain(myKeys);
   // so red = true, yellow = false
+
+  var g = svg.append("g")
+    .attr("transform", translate(margin.left, margin.top));
 
   y.domain([0, d3.max(data, d => d3.sum(myKeys, k => +d[k]))]).nice();
 
@@ -102,7 +108,8 @@ function stackBar(data) {
     //.attr("transform", "translate(80, 420)")
     .style("stroke", "black")
     //.call(d3.axisLeft(y).ticks(16, "f").tickFormat(d3.formatPrefix(".0", 1e5)));
-    .call(d3.axisLeft(y).ticks(16, "f"));
+    .call(d3.axisLeft(y).ticks(16, "f"))
+    .attr("transform", "rotate(-30)");
 
 
   var group = svg.selectAll("g.layer")
