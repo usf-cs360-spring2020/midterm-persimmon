@@ -1,13 +1,15 @@
+// https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95
 let config = {
   'svg': {},
   'margin': {},
-  'plot': {}
+  'plot': {},
+  'legend': {}
 };
 
 config.svg.width = 960;
 config.svg.height = 500;
 
-config.margin.top = 10;
+config.margin.top = 40;
 config.margin.right = 10;
 config.margin.bottom = 20;
 config.margin.left = 140;
@@ -16,6 +18,11 @@ config.plot.x = config.margin.left;
 config.plot.y = config.margin.top;
 config.plot.width = config.svg.width - config.margin.left - config.margin.right;
 config.plot.height = config.svg.height - config.margin.top - config.margin.bottom;
+
+config.legend.x = 750;
+config.legend.y = 0;
+config.legend.width = 180;
+config.legend.height = 10;
 
 const svg = d3.select("svg#vis");
 svg.attr('width', config.svg.width);
@@ -39,9 +46,11 @@ let axis = {};
 
 axis.x = d3.axisBottom(scale.x);
 axis.x.tickPadding(0);
+axis.x.tickSizeOuter(0);
 
 axis.y = d3.axisLeft(scale.y);
 axis.y.tickPadding(0);
+axis.y.tickSizeOuter(0);
 
 d3.tsv("calls_no_duplicates.tsv", convertRow).then(draw);
 
@@ -103,6 +112,91 @@ function draw(data) {
     .attr("height", d => scale.y.bandwidth())
     .style("fill", d => scale.color(d.Count))
     .style("stroke", d => scale.color(d.Count));
+
+  // https://observablehq.com/@sjengle/interactivity?collection=@sjengle/interactive-scatterplot
+  cells.on("mouseover.highlight", function(d) {
+    d3.select(this)
+      .raise()
+      .style("stroke", "black")
+      .style("stroke-width", 2);
+  });
+
+  cells.on("mouseout.highlight", function(d) {
+    d3.select(this).style("stroke", null);
+    d3.select(status).text("highlight: none");
+  });
+
+  cells.on("mouseover.tooltip", function(d) {
+    let div = d3.select("body").append("div");
+
+    div.attr("id", "details");
+    div.attr("class", "tooltip");
+
+    let rows = div.append("table")
+      .selectAll("tr")
+      .data(Object.keys(d))
+      .enter()
+      .append("tr");
+
+    rows.append("th").text(key => key);
+    rows.append("td").text(key => d[key]);
+
+    div.style("display", "inline");
+  });
+
+  cells.on("mousemove.tooltip", function(d) {
+    let div = d3.select("div#details");
+
+    let bbox = div.node().getBoundingClientRect();
+
+    div.style("left", d3.event.pageX + "px")
+    div.style("top",  (d3.event.pageY - bbox.height) + "px");
+  });
+
+  cells.on("mouseout.tooltip", function(d) {
+    d3.selectAll("div#details").remove();
+  });
+
+  drawLegend();
+}
+
+// https://bl.ocks.org/mbostock/1086421
+function drawLegend() {
+  let legend = svg.append("g")
+    .attr("id", "legend")
+    .attr("transform", translate(config.legend.x, config.legend.y));
+
+  legend.append("rect")
+    .attr("width", config.legend.width)
+    .attr("height", config.legend.height)
+    .attr("fill", "url(#gradient)");
+
+  let gradientScale = d3.scaleLinear()
+    .domain([0, 100])
+    .range(scale.color.domain());
+
+  let gradient = svg.append("defs")
+    .append("linearGradient")
+    .attr("id", "gradient")
+
+  gradient.selectAll("stop")
+    .data(d3.ticks(0, 100, 50))
+    .enter()
+    .append("stop")
+    .attr("offset", d => d + "%")
+    .attr("stop-color", d => scale.color(gradientScale(d)));
+
+  let legendScale = d3.scaleLinear()
+    .domain(scale.color.domain())
+    .range([0, config.legend.width]);
+
+  let legendAxis = d3.axisBottom(legendScale)
+    .tickValues(scale.color.domain())
+    .tickSize(5);
+
+  legend.append("g")
+    .call(legendAxis)
+    .attr("transform", translate(0, config.legend.height))
 }
 
 function translate(x, y) {
