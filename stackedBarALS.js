@@ -52,11 +52,13 @@ function stackBar(data) {
   // neighborhoods = [string list of all neighborhoods in SF]
   var svg = d3.select("svg#stackedBar"),
     margin = {top: 35, left: 35, bottom: 5, right: 5},
-    width = 960 + margin.left + margin.right,
-    height = 500 + margin.top + margin.bottom;
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
   svg.append("g")
     .attr("transform", translate(margin.left, margin.top));
-
+  // svg.attr("width", "30");
+console.log("height", height);
+console.log("width", width);
 
   // the x axis: Neighborhoods
   var x = d3.scaleBand()
@@ -66,7 +68,8 @@ function stackBar(data) {
 
   var y = d3.scaleLinear()
 	//.rangeRound([height - margin.bottom, margin.top]);
-  .rangeRound([height, 0])
+  .rangeRound([height, 0]);
+
   // xAxis
   var xAxis = svg.append("g")
 		.attr("transform", translate(0, height - margin.bottom))
@@ -86,30 +89,30 @@ function stackBar(data) {
 
   var g = svg.append("g")
 
-    .attr("transform", translate(margin.left, margin.top))
+    .attr("transform", translate(margin.left, margin.top));
 
-    g.append("g")
-    .attr("class", "axis axis--x")
-    .attr("transform", translate(0, height-margin.bottom))
-    .call(d3.axisBottom(x));
+  g.append("g")
+  .attr("class", "axis axis--x")
+  .attr("transform", translate(0, height-margin.bottom))
+  .call(d3.axisBottom(x));
 
-    g.append("g")
-             .attr("class", "axis axis--y")
-             .call(d3.axisLeft(y).ticks(10, "%"))
-           .append("text")
-             .attr("transform", "rotate(-90)")
-             .attr("y", 6)
-             .attr("dy", "0.71em")
-             .attr("text-anchor", "end")
-             .text("Number Of Cases");
-   g.selectAll(".bar")
-        .data(data)
-        .enter().append("rect")
-          .attr("class", "bar")
-          .attr("x", function(d) { return x(d.Neighborhoods); }) // x(d.Neighborboods)
-          .attr("y", function(d) { return y(d.WithALSUnit); })//y(d.WithALSUnit)
-          .attr("width", x.bandwidth())
-          .attr("height", function(d) { return height - y(d.WithALSUnit); });
+  g.append("g")
+     .attr("class", "axis axis--y")
+     .call(d3.axisLeft(y).ticks(10, "%"))
+   .append("text")
+     .attr("transform", "rotate(-90)")
+     .attr("y", 6)
+     .attr("dy", "0.71em")
+     .attr("text-anchor", "end")
+     .text("Number Of Cases");
+ g.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return x(d.Neighborhoods); }) // x(d.Neighborboods)
+        .attr("y", function(d) { return y(d.WithALSUnit); })//y(d.WithALSUnit)
+        .attr("width", x.bandwidth())
+        .attr("height", function(d) { return height - y(d.WithALSUnit); });
 
   //y.domain([0, d3.max(data, d => d3.sum(myKeys, k => +d[k]))]).nice();
   x.domain(data.map(function(d) { return d.Neighborboods; }));
@@ -149,7 +152,7 @@ function stackBar(data) {
     // draw bars
   var bars = svg.selectAll("g.layer").selectAll("rect")
 			.data(d => d, e => e.Neighborhoods);
-
+console.log("bars", bars);
   bars.exit().remove();
 
 	bars.enter().append("rect")
