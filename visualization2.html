@@ -40,14 +40,16 @@
     </div>
   </section>
   <!-- End page header -->
-  <!-- Page navigation -->
+  
+
+  !-- Page navigation -->
   <!-- https://bulma.io/documentation/components/navbar/ -->
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
         <!-- TODO: Change link to repository homepage if needed -->
         <!-- TODO: Change which navbar-item is-active if needed -->
-        <a class="navbar-item" href="index.html">
+        <a class="navbar-item is-active" href="index.html">
           <span class="icon"><i class="fas fa-home"></i></span>
           <span>Home</span>
         </a>
@@ -60,32 +62,60 @@
       </div>
 
       <div id="main-menu" class="navbar-menu has-text-weight-medium">
-        <!-- Left navbar items -->
-        <div class="navbar-start">
-          <!-- The data icon -->
-          <a class="navbar-item" href="dataset.html" title="Data">
-            <span class="icon"><i class="fas fa-table"></i></span>
-            <span>Data</span>
-          </a>
-          <!-- Visualizations Icon -->
-          <a class = "navbar-item" href = "visualization1.html" title = "Visualization 1">
-            <span class="icon"><i class="fas fa-paint-brush"></i></span>
-            <span>Visualization 1</span>
-          </a>
-          <a class = "navbar-item is-active" href = "visualization2.html" title = "Visualization 2">
-            <span class="icon"><i class="fas fa-paint-brush"></i></span>
-            <span>Visualization 2</span>
-          </a>
-          <a class = "navbar-item" href = "visualization3.html" title = "Visualization 3">
-            <span class="icon"><i class="fas fa-paint-brush"></i></span>
-            <span>Visualization 3</span>
-          </a>
+          <!-- Left navbar items -->
+          <div class="navbar-start">
+            <!-- The data icon -->
+            <a class="navbar-item" href="dataset.html" title="Data">
+              <span class="icon"><i class="fas fa-table"></i></span>
+              <span>Data</span>
+            </a>
+            
+          <!-- prototypes -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Prototype
+            </a>
+            <div class="navbar-dropdown">
+              <a class = "navbar-item" href = "visualization1.html" title = "Prototype 1">
+                <span class="icon"><i class="fas fa-paint-brush"></i></span>
+                <span>Prototype 1</span>
+              </a>
+              <a class = "navbar-item" href = "visualization2.html" title = "Prototype 2">
+                <span class="icon"><i class="fas fa-paint-brush"></i></span>
+                <span>Prototype 2</span>
+              </a>
+              <a class = "navbar-item" href = "visualization3.html" title = "Prototype 3">
+                <span class="icon"><i class="fas fa-paint-brush"></i></span>
+                <span>Prototype 3</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- visualizations -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Visualizations
+            </a>
+            <div class="navbar-dropdown">
+              <a class = "navbar-item" href = "final_visualization1.html" title = "Prototype 1">
+                <span class="icon"><i class="fas fa-paint-brush"></i></span>
+                <span>Visualization 1</span>
+              </a>
+              <a class = "navbar-item" href = "final_visualization2.html" title = "Visualization 2">
+                <span class="icon"><i class="fas fa-paint-brush"></i></span>
+                <span>Visualization 2</span>
+              </a>
+              <a class = "navbar-item" href = "final_visualization3.html" title = "Visualization 3">
+                <span class="icon"><i class="fas fa-paint-brush"></i></span>
+                <span>Visualization 3</span>
+              </a>
+            </div>
+          </div>
         </div>
 
         <!-- Right navbar items -->
         <div class="navbar-end">
           <!-- TODO: Update as needed -->
-          <!-- About Icon -->
           <a class="navbar-item" href="about.html" title="About">
             <span class="icon"><i class="fas fa-info-circle"></i></span>
             <span>About</span>
@@ -95,7 +125,6 @@
     </div>
   </nav>
   <!-- End page navigation -->
-
 
 
   <section class="section">
