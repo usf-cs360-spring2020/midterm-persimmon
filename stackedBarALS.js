@@ -138,7 +138,7 @@ function stackBar(data) {
 
   var group = svg.selectAll("g.layer")
 			.data(d3.stack().keys(myKeys)(data), d => d.key);
-  console.log(d3.stack().keys(myKeys)(data));
+  // console.log(d3.stack().keys(myKeys)(data));
 
   group.exit().remove()
 
