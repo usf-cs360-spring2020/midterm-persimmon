@@ -84,20 +84,20 @@ const heatScales = {
 };
 
 // heatmap tooltip
-let heattip = d3.tip().attr('class', 'd3-tip')
-  .direction('e').offset([0,5])
-  .html(function(d) {
-    content = `
-        <table style="margin-top: 2.5px;">
-                <tr><td>Neighborhood: </td><td style="text-align: left">` + d.neighborhoods + `</td></tr>
-                <tr><td>Call Type Group: </td><td style="text-align: left">` + d.callType + `</td></tr>
-                <tr><td>` + d.onTime.key + `: </td><td style="text-align: left"> ` + formatter(d.onTime.value) + `</td></tr>
-                <tr><td>` + d.recToDis.key + `: </td><td style="text-align: left"> ` + formatter(d.recToDis.value) + `</td></tr>
-                <tr><td>` + d.disToRes.key + `: </td><td style="text-align: left"> ` + formatter(d.disToRes.value) + `</td></tr>
-                <tr><td>` + d.resToOn.key + `: </td><td style="text-align: left"> ` + formatter(d.resToOn.value) + `</td></tr>
-        </table>`;
-    return content;
-  });
+// let heattip = d3.tip().attr('class', 'd3-tip')
+//   .direction('e').offset([0,5])
+//   .html(function(d) {
+//     content = `
+//         <table style="margin-top: 2.5px;">
+//                 <tr><td>Neighborhood: </td><td style="text-align: left">` + d['Neighborhood'] + `</td></tr>
+//                 <tr><td>Call Type Group: </td><td style="text-align: left">` + d['Call Type Group'] + `</td></tr>
+//                 <tr><td>Avg On Scene Wait Time</td><td style="text-align: left"> ` + formatter(d['Avg On Scene Wait Time']) + `</td></tr>
+//                 <tr><td>Avg Received to Dispatch Wait Time:</td><td style="text-align: left"> ` + formatter(d['Avg Received to Dispatch Wait Time']) + `</td></tr>
+//                 <tr><td>Avg Dispatch to Response Wait Time:</td><td style="text-align: left"> ` + formatter(d['Avg Dispatch to Response Wait Time']) + `</td></tr>
+//                 <tr><td>Avg Response to On Scene Wait Time:</td><td style="text-align: left"> ` + formatter(d['Avg Response to On Scene Wait Time:']) + `</td></tr>
+//         </table>`;
+//     return content;
+//   });
 
 // heatSvg.call(heattip);
 // end setup
@@ -123,9 +123,6 @@ function groupData(data) {
 
 function stackedBars(series) {
   // stacked barchart inspired by: https://observablehq.com/@d3/stacked-bar-chart
-  // console.log(series.filter());
-  // console.log(series[0].values[3].map((d) => d.data['Avg On Scene Wait Time']));
-  // console.log(d3.max(series[0].values[0].map((d) => d.data['Avg On Scene Wait Time'])));
 
   let data = series.find(function(d) { return d.key == 'Alarm' });
 
@@ -391,13 +388,84 @@ function drawHeatTitles() {
     .attr('dx', 0);
 }
 
-// legend
-function drawHeatLegend(){
 
+// draw heatmap
+function drawHeatmap(series) {
+  let heatData = series.map(d => d.values[3]);
+  heatData = heatData.flat().map(d => d.data);
+  console.log(heatData);
+
+  let x = d3.scaleBand()
+    .domain(heatData.map((d) => d['Call Type Group']))
+    .range([heatMargin.left, heatBounds.width - heatMargin.right])
+    .padding(0.1);
+
+  let y = d3.scaleBand()
+    .domain(heatData.map((d) => d['Neighborhoods']))
+    .range([heatBounds.height - heatMargin.bottom, heatMargin.top]);
+
+  let color = d3.scaleSequential(d3.interpolateOranges).domain([0, d3.max(heatData.map((d) => d['Avg On Scene Wait Time']))]);
+
+  let formatValue = x => isNaN(x) ? "N/A" : x.toLocaleString("en");
+
+  let xAxis = g => g
+    .attr('class', 'x-axis axis')
+    .attr("transform", `translate(0,${heatMargin.top - 10})`)
+    .call(d3.axisTop(x).tickPadding(0).tickSizeOuter(0));
+ 
+  let yAxis = g => g
+    .attr("transform", `translate(${barMargin.left + 120},0)`)
+    .call(d3.axisLeft(y).tickPadding(0).tickSizeOuter(0));
+
+  heattip = d3.tip().attr('class', 'd3-tip')
+    .direction('e').offset([0,5])
+    .html(function(d) {
+      content = `
+          <table style="margin-top: 2.5px;">
+                  <tr><td>Neighborhood: </td><td style="text-align: left">` + d['Neighborhoods'] + `</td></tr>
+                  <tr><td>Call Type Group: </td><td style="text-align: left">` + d['Call Type Group'] + `</td></tr>
+                  <tr><td>Avg On Scene Wait Time</td><td style="text-align: left"> ` + formatter(d['Avg On Scene Wait Time']) + `</td></tr>
+                  <tr><td>Avg Received to Dispatch Wait Time:</td><td style="text-align: left"> ` + formatter(d['Avg Received to Dispatch Wait Time']) + `</td></tr>
+                  <tr><td>Avg Dispatch to Response Wait Time:</td><td style="text-align: left"> ` + formatter(d['Avg Dispatch to Response Wait Time']) + `</td></tr>
+                  <tr><td>Avg Response to On Scene Wait Time:</td><td style="text-align: left"> ` + formatter(d['Avg Response to On Scene Wait Time']) + `</td></tr>
+          </table>`;
+      return content;
+    });
+  // heatsvg.call(heattip);
+
+  const heatsvg = d3.select("#heatmap").append("svg")
+    .attr("width", heatBounds.width)
+    .attr("height", heatBounds.height)
+    .call(heattip);
+
+  heatsvg.append("g")
+    .selectAll("g")
+    .data(heatData)
+    .join("g")
+      .attr('class', d => classParser(d['Neighborhoods'], hoodPattern, hoodReplace))
+    .selectAll("rect")
+    .data(heatData)
+    .join('rect')
+      .attr('class', 'heatcells bordered')
+      .attr("x", d => x(d['Call Type Group']))
+      .attr("y", d => y(d['Neighborhoods']))
+      .attr("width", x.bandwidth())
+      .attr("height", y.bandwidth())
+      .style("fill", d => color(d['Avg On Scene Wait Time']))
+    .on('mouseover', handleMouseOver)
+    .on('mouseout', handleMouseOut);
+
+  heatsvg.append("g")
+    .call(xAxis);
+
+  heatsvg.append("g")
+      .call(yAxis);
+
+  // legend 
   const legendWidth = 250;
   const legendHeight = 25;
 
-  const colorGroup = heatSvg.append('g').attr('id', 'color-legend')
+  const colorGroup = heatsvg.append('g').attr('id', 'color-legend')
     .attr('transform', translate(18, heatMargin.top - 110));
 
   const title = colorGroup.append('text')
@@ -406,21 +474,21 @@ function drawHeatLegend(){
     .text('Avg On Scene Wait Time (minutes)')
     .attr('dy', 12);
 
-  const colorDomain = [d3.min(heatScales.color.domain()), d3.max(heatScales.color.domain())];
+  const colorDomain = [d3.min(color.domain()), d3.max(color.domain())];
   
-  heatScales.percent = d3.scaleLinear()
+  let myPercent = d3.scaleLinear()
     .range([0, 100])
     .domain(colorDomain);
 
-  const defs = heatSvg.append('defs')
+  const gradients = heatsvg.append('defs')
     .append('linearGradient')
     .attr('id', 'gradient')
     .selectAll('stop')
-    .data(heatScales.color.ticks())
+    .data(color.ticks())
     .enter()
     .append('stop')
-    .attr('offset', d => heatScales.percent(d) + '%')
-    .attr('stop-color', d => heatScales.color(d));
+    .attr('offset', d => myPercent(d) + '%')
+    .attr('stop-color', d => color(d));
 
   const colorbox = colorGroup.append('rect')
     .attr('x', 0)
@@ -429,12 +497,12 @@ function drawHeatLegend(){
     .attr('height', legendHeight)
     .attr('fill', 'url(#gradient)');
 
-  heatScales.legend = d3.scaleLinear()
+  let legend = d3.scaleLinear()
     .domain(colorDomain)
     .range([0, legendWidth]);
 
-  const legendAxis = d3.axisBottom(heatScales.legend)
-    .tickValues(heatScales.color.domain())
+  const legendAxis = d3.axisBottom(legend)
+    .tickValues(color.domain())
     .tickSize(legendHeight)
     .tickSizeOuter(0);
 
@@ -442,67 +510,36 @@ function drawHeatLegend(){
     .attr('id', 'color-axis')
     .attr('transform', translate(0, 12 + 6))
     .call(legendAxis);
-}
 
+  // heatmap titles
+  const xMiddle = heatMargin.left + midpoint(x.range());
+  const yMiddle = heatMargin.top + midpoint(y.range());
 
-// draw heatmap
-function drawHeatmap(series) {
+  const xTitleGroup = heatsvg.append('g');
+  const xTitle = xTitleGroup.append('text')
+    .attr('class', 'axis-title')
+    .attr("id", "axis-title")
+    .text('Call Type Groups');
 
-  let data = series.find(function(d) { return d.key == 'Alarm' });
-  console.log(series);
+  xTitle.attr('x', xMiddle);
+  xTitle.attr('y', 0 + heatMargin.top - 20);
+  xTitle.attr('dy', -20);
+  xTitle.attr('text-anchor', 'middle');
 
-  let x = d3.scaleBand()
-    .domain(series[0].values[0].map((d) => d.data['Neighborhoods']))
-    .range([heatMargin.left, heatBounds.width - heatMargin.right])
-    .padding(0.1);
+  const yTitleGroup = heatsvg.append('g');
+  yTitleGroup.attr('transform', translate(4, yMiddle));
 
-  let y = d3.scaleLinear()
-    .domain([0, d3.max(data.values, d => d3.max(d, d => d[1]))])
-    .rangeRound([heatBounds.height - heatMargin.bottom, heatMargin.top]);
+  const yTitle = yTitleGroup.append('text')
+    .attr('class', 'axis-title')
+    .attr("id", "axis-title")
+    .text('Neighborhoods')
+    .attr('x', 0)
+    .attr('y', 0)
+    .attr('dy', -400)
+    .attr('dx', 80);
 
-  let color = d3.scaleSequential(d3.interpolateOranges)
-    .domain([0, 20]);
-
-  let formatValue = x => isNaN(x) ? "N/A" : x.toLocaleString("en");
-
-  let xAxis = g => g
-    .attr("transform", `translate(0,${heatBounds.height - heatMargin.bottom})`)
-    .call(d3.axisBottom(x).tickSizeOuter(0))
-    .selectAll("text")
-      .attr("y", 0)
-      .attr("x", -5)
-      .attr("dy", ".35em")
-      .attr("transform", "rotate(-90)")
-      .style("text-anchor", "end");
-
-  let yAxis = g => g
-    .attr("transform", `translate(${barMargin.left},0)`)
-    .call(d3.axisLeft(y).ticks(null, "s"));
-
-  const heatsvg = d3.select("#heatmap").append("svg")
-    .attr("width", heatBounds.width)
-    .attr("height", heatBounds.height);
-
-  heatsvg.append("g")
-    .selectAll("g")
-    .data(series)
-    .join("g")
-    .selectAll("rect")
-    .data()
-    .join('rect')
-      .attr('class', 'heatcells bordered')
-      .attr("x", d => heatScales.x(d.callType))
-      .attr("y", d => heatScales.y(d.neighborhoods))
-      .attr("width", heatScales.x.bandwidth())
-      .attr("height", heatScales.y.bandwidth())
-      .style("fill", d => heatScales.color(d.onTime.value))
-    .on('mouseover', handleMouseOver)
-    .on('mouseout', handleMouseOut);
-
-
-
-
-
+  // tooltip
+  
 
   // axis
   // let callTypeGroups = data.map(row => row.callType);
@@ -563,9 +600,9 @@ function handleMouseOver(d, i) {  // Add interactivity
   heattip.show(d);
 
   // Use D3 to select element, change color and size
-  d3.selectAll('.' + classParser(d.neighborhoods, hoodPattern, hoodReplace))
+  d3.selectAll('.' + classParser(d['Neighborhoods'], hoodPattern, hoodReplace))
     .selectAll('rect')
-    .transition().duration(5)
+    .transition().duration(1)
       .style('stroke', 'blue');
       
 }
@@ -574,16 +611,16 @@ function handleMouseOver(d, i) {  // Add interactivity
 function handleMouseOut(d, i) {  // Add interactivity
   heattip.hide(d);
   // Use D3 to select element, change color and size
-  d3.selectAll('.' + classParser(d.neighborhoods, hoodPattern, hoodReplace))
+  d3.selectAll('.' + classParser(d['Neighborhoods'], hoodPattern, hoodReplace))
     .selectAll('rect')
-    .transition().duration(5)
+    .transition().duration(1)
       .style('stroke', '#E6E6E6');
 }
 
 
 function sortByNeighborhood(data) {
   return data.sort(function(a, b) {
-    return d3.descending(a.neighborhoods, b.neighborhoods)
+    return d3.descending(a['Neighborhoods'], b['Neighborhoods'])
   });
 }
 
