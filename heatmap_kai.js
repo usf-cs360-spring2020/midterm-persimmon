@@ -113,13 +113,13 @@ d3.csv("data/avg_wait_times_by_call_type_neighborhood.csv",
 
 function groupData(data) {
   let new_data = data.map(_groupData);
-  console.log("new_data", new_data);
+  // console.log("new_data", new_data);
   function _groupData(callGroup,i) {
     let new_d = {key: callGroup.key, values: d3.stack().keys(Object.keys(callGroup.values[0]).slice(-4))(callGroup.values).map(d => (d.forEach(v => v.key = d.key), d))};
-    console.log("new_d", new_d);
+    // console.log("new_d", new_d);
     return new_d;
   }
-  console.log("new_data", new_data);
+  // console.log("new_data", new_data);
   return new_data;
 }
 
@@ -128,9 +128,10 @@ function stackedBars(series) {
   // console.log(series.filter());
   // console.log(series[0].values[3].map((d) => d.data['Avg On Scene Wait Time']));
   // console.log(d3.max(series[0].values[0].map((d) => d.data['Avg On Scene Wait Time'])));
-  console.log("series", series);
+  // console.log("series", series);
   let data = series.find(function(d) { return d.key == 'Alarm' });
-
+  // console.log("data", data);
+  // console.log("series[0].values[0]", series[0].values[0]);
   let x = d3.scaleBand()
     .domain(series[0].values[0].map((d) => d.data['Neighborhoods']))
     .range([barMargin.left, barBounds.width - barMargin.right])
