@@ -1,4 +1,3 @@
-// https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95
 let config = {
   'svg': {},
   'margin': {},
@@ -9,10 +8,10 @@ let config = {
 config.svg.width = 960;
 config.svg.height = 500;
 
-config.margin.top = 40;
+config.margin.top = 50;
 config.margin.right = 10;
-config.margin.bottom = 20;
-config.margin.left = 140;
+config.margin.bottom = 50;
+config.margin.left = 160;
 
 config.plot.x = config.margin.left;
 config.plot.y = config.margin.top;
@@ -20,7 +19,7 @@ config.plot.width = config.svg.width - config.margin.left - config.margin.right;
 config.plot.height = config.svg.height - config.margin.top - config.margin.bottom;
 
 config.legend.x = 750;
-config.legend.y = 0;
+config.legend.y = 10;
 config.legend.width = 180;
 config.legend.height = 10;
 
@@ -46,11 +45,19 @@ let axis = {};
 
 axis.x = d3.axisBottom(scale.x);
 axis.x.tickPadding(0);
+axis.x.tickSize(5);
 axis.x.tickSizeOuter(0);
 
 axis.y = d3.axisLeft(scale.y);
 axis.y.tickPadding(0);
+axis.y.tickSize(3);
 axis.y.tickSizeOuter(0);
+
+let tooltipMap = {
+  "CallType": "Call Type:",
+  "Neighborhoood": "Neighborhoood:",
+  "Count": "Number of Calls:"
+};
 
 d3.tsv("calls_no_duplicates.tsv", convertRow).then(draw);
 
@@ -75,6 +82,7 @@ function convertRow(row, index) {
   return out;
 }
 
+// https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95
 function draw(data) {
   let neighborhoods = d3.set(data.map(function( d ) { return d.Neighborhoood; } )).values();
 
@@ -117,13 +125,12 @@ function draw(data) {
   cells.on("mouseover.highlight", function(d) {
     d3.select(this)
       .raise()
-      .style("stroke", "black")
-      .style("stroke-width", 2);
+      .style("stroke", "grey")
+      .style("stroke-width", 1);
   });
 
   cells.on("mouseout.highlight", function(d) {
     d3.select(this).style("stroke", null);
-    d3.select(status).text("highlight: none");
   });
 
   cells.on("mouseover.tooltip", function(d) {
@@ -138,7 +145,7 @@ function draw(data) {
       .enter()
       .append("tr");
 
-    rows.append("th").text(key => key);
+    rows.append("th").text(key => tooltipMap[key]);
     rows.append("td").text(key => d[key]);
 
     div.style("display", "inline");
@@ -149,14 +156,15 @@ function draw(data) {
 
     let bbox = div.node().getBoundingClientRect();
 
-    div.style("left", d3.event.pageX + "px")
-    div.style("top",  (d3.event.pageY - bbox.height) + "px");
+    div.style("left", (d3.event.pageX + 8) + "px")
+    div.style("top",  (d3.event.pageY - bbox.height - 8) + "px");
   });
 
   cells.on("mouseout.tooltip", function(d) {
     d3.selectAll("div#details").remove();
   });
 
+  drawTitles();
   drawLegend();
 }
 
@@ -197,6 +205,31 @@ function drawLegend() {
   legend.append("g")
     .call(legendAxis)
     .attr("transform", translate(0, config.legend.height))
+}
+
+function drawTitles() {
+  let title = svg.append("text")
+    .text("Number of Calls to the SF Fire Department in 2019")
+    .attr("id", "title")
+    .attr("x", 180)
+    .attr("y", 26)
+    .attr("font-size", "26px");
+
+  let x = svg.append("text")
+    .text("Call Type")
+    .attr("id", "axisTitle")
+    .attr("x", 510)
+    .attr("y", 480)
+    .attr("font-size", "16px")
+    .attr("font-weight", "bold");
+
+  let y = svg.append("text")
+    .text("Neighborhoood")
+    .attr("id", "axisTitle")
+    .attr("x", 52)
+    .attr("y", 45)
+    .attr("font-size", "14px")
+    .attr("font-weight", "bold");
 }
 
 function translate(x, y) {
