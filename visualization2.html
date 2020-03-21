@@ -42,7 +42,7 @@
   <!-- End page header -->
 
 
-  !-- Page navigation -->
+  <!-- Page navigation --> -->
   <!-- https://bulma.io/documentation/components/navbar/ -->
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="container">
@@ -153,6 +153,11 @@
       <p> When the mouse hovers over a cross-section of the heatmap, the user will see a nice table of 3 values:
         neighborhood, call type group, and the average normalized difference between dispatch time and on scene time.
       </p>
+
+      <h2>Peer Feedback</h2>
+      <p><strong>After reading the peer feedback, I will revise the following elements for the final visualizations:</strong></p>
+      <p>Improving interpretability. Original I though it would be help to normalize the wait time for each call group to make comparing across groups more equal. However, this did not have the effect I had intended. Not being able to interperte the scale in terms of time was confusing. In the final version, I will simply take the average values for each call group and neighborhood.</p>
+      <p>Identifying individual cells in the heatmap. Another issue viewers had was identifying boundries between cells. To fix this, I will add outlines to each cell and a tooltip.</p>
       </div>
       <!-- End page content -->
     </div>
