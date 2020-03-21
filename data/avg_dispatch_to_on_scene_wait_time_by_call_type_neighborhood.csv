@@ -1,0 +1,169 @@
+Call Type Group,Neighborhoods - Analysis Boundaries,Avg Dispatch to On Scene Wait Time
+Alarm,Bayview Hunters Point,5.846361367127496
+Alarm,Bernal Heights,5.152610759493671
+Alarm,Castro/Upper Market,4.618849206349207
+Alarm,Chinatown,4.252646085997795
+Alarm,Excelsior,5.446647509578543
+Alarm,Financial District/South Beach,5.072653256704981
+Alarm,Glen Park,5.345934959349593
+Alarm,Golden Gate Park,5.177920227920228
+Alarm,Haight Ashbury,4.442051630434782
+Alarm,Hayes Valley,4.163670886075949
+Alarm,Inner Richmond,4.880692307692308
+Alarm,Inner Sunset,5.379428172942817
+Alarm,Japantown,4.499751243781095
+Alarm,Lakeshore,5.991525123849965
+Alarm,Lincoln Park,6.447674418604651
+Alarm,Lone Mountain/USF,4.4390642303433
+Alarm,Marina,4.636495535714286
+Alarm,McLaren Park,6.487878787878787
+Alarm,Mission,4.430588916982723
+Alarm,Mission Bay,4.646594368340944
+Alarm,Nob Hill,4.10250946969697
+Alarm,Noe Valley,4.581754658385093
+Alarm,None,7.179166666666666
+Alarm,North Beach,4.705827638572513
+Alarm,Oceanview/Merced/Ingleside,5.293460388639761
+Alarm,Outer Mission,4.836757301107754
+Alarm,Outer Richmond,4.795248937462052
+Alarm,Pacific Heights,4.18530881017257
+Alarm,Portola,5.209139784946236
+Alarm,Potrero Hill,5.213022875816994
+Alarm,Presidio,5.252777777777778
+Alarm,Presidio Heights,4.446851145038168
+Alarm,Russian Hill,4.853701572688915
+Alarm,Seacliff,5.3094059405940595
+Alarm,South of Market,4.524281705948372
+Alarm,Sunset/Parkside,5.3450878495421925
+Alarm,Tenderloin,4.338000764525995
+Alarm,Treasure Island,5.836666666666667
+Alarm,Twin Peaks,6.169146825396825
+Alarm,Visitacion Valley,6.536380597014926
+Alarm,West of Twin Peaks,5.543033786137234
+Alarm,Western Addition,4.173062475286675
+Fire,Bayview Hunters Point,7.242034139402561
+Fire,Bernal Heights,6.310854700854701
+Fire,Castro/Upper Market,10.860978043912176
+Fire,Chinatown,5.334666666666666
+Fire,Excelsior,7.469483568075118
+Fire,Financial District/South Beach,7.258921330089213
+Fire,Glen Park,6.13843537414966
+Fire,Golden Gate Park,6.1984234234234235
+Fire,Haight Ashbury,9.203244837758113
+Fire,Hayes Valley,4.235232067510548
+Fire,Inner Richmond,5.225821596244131
+Fire,Inner Sunset,6.172108843537415
+Fire,Japantown,4.473148148148149
+Fire,Lakeshore,10.354907407407408
+Fire,Lincoln Park,7.7508333333333335
+Fire,Lone Mountain/USF,11.303186274509805
+Fire,Marina,7.82212389380531
+Fire,McLaren Park,7.567777777777778
+Fire,Mission,8.128961748633879
+Fire,Mission Bay,6.3673553719008265
+Fire,Nob Hill,5.01219512195122
+Fire,Noe Valley,6.716666666666667
+Fire,None,4.0125
+Fire,North Beach,7.851282051282052
+Fire,Oceanview/Merced/Ingleside,7.2295454545454545
+Fire,Outer Mission,8.00776836158192
+Fire,Outer Richmond,9.919914215686275
+Fire,Pacific Heights,5.705622489959839
+Fire,Portola,7.3522598870056495
+Fire,Potrero Hill,5.500683760683761
+Fire,Presidio,9.082552083333333
+Fire,Presidio Heights,5.84
+Fire,Russian Hill,7.436475409836065
+Fire,Seacliff,7.756535947712418
+Fire,South of Market,5.431039136302294
+Fire,Sunset/Parkside,7.9415413533834585
+Fire,Tenderloin,5.0172592592592595
+Fire,Treasure Island,13.45
+Fire,Twin Peaks,8.479166666666666
+Fire,Visitacion Valley,12.0
+Fire,West of Twin Peaks,7.796636085626911
+Fire,Western Addition,5.641818181818182
+Non Life-threatening,Bayview Hunters Point,10.601626826029216
+Non Life-threatening,Bernal Heights,10.336728754365542
+Non Life-threatening,Castro/Upper Market,8.648899039587725
+Non Life-threatening,Chinatown,10.412690355329948
+Non Life-threatening,Excelsior,10.405419921875
+Non Life-threatening,Financial District/South Beach,11.39681176586714
+Non Life-threatening,Glen Park,9.378240740740742
+Non Life-threatening,Golden Gate Park,9.038271604938272
+Non Life-threatening,Haight Ashbury,8.625995807127882
+Non Life-threatening,Hayes Valley,9.061345291479821
+Non Life-threatening,Inner Richmond,8.894710578842314
+Non Life-threatening,Inner Sunset,8.979279279279279
+Non Life-threatening,Japantown,9.244607843137254
+Non Life-threatening,Lakeshore,11.322678762006403
+Non Life-threatening,Lincoln Park,12.455833333333334
+Non Life-threatening,Lone Mountain/USF,8.615431201550388
+Non Life-threatening,Marina,9.995691467002944
+Non Life-threatening,McLaren Park,11.026041666666666
+Non Life-threatening,Mission,9.214797695605574
+Non Life-threatening,Mission Bay,11.367881548974943
+Non Life-threatening,Nob Hill,8.754229211341434
+Non Life-threatening,Noe Valley,8.558534798534799
+Non Life-threatening,None,10.076111111111112
+Non Life-threatening,North Beach,11.342847222222222
+Non Life-threatening,Oceanview/Merced/Ingleside,10.126373333333333
+Non Life-threatening,Outer Mission,9.998247663551403
+Non Life-threatening,Outer Richmond,10.16382247870294
+Non Life-threatening,Pacific Heights,8.97576882290562
+Non Life-threatening,Portola,9.945414462081128
+Non Life-threatening,Potrero Hill,9.745875634517766
+Non Life-threatening,Presidio,13.071768707482994
+Non Life-threatening,Presidio Heights,9.444181213632586
+Non Life-threatening,Russian Hill,9.653165182987141
+Non Life-threatening,Seacliff,7.7821428571428575
+Non Life-threatening,South of Market,11.108519878745483
+Non Life-threatening,Sunset/Parkside,10.348455752920467
+Non Life-threatening,Tenderloin,9.8786487950176
+Non Life-threatening,Treasure Island,11.183076923076923
+Non Life-threatening,Twin Peaks,10.241666666666667
+Non Life-threatening,Visitacion Valley,11.799389852280026
+Non Life-threatening,West of Twin Peaks,9.649685781618224
+Non Life-threatening,Western Addition,9.23443396226415
+Potentially Life-Threatening,Bayview Hunters Point,6.94045466457023
+Potentially Life-Threatening,Bernal Heights,6.5518433179723505
+Potentially Life-Threatening,Castro/Upper Market,5.445798132503335
+Potentially Life-Threatening,Chinatown,6.0125130780498015
+Potentially Life-Threatening,Excelsior,6.615369479667687
+Potentially Life-Threatening,Financial District/South Beach,6.337264356543533
+Potentially Life-Threatening,Glen Park,6.404130747126437
+Potentially Life-Threatening,Golden Gate Park,6.359715242881071
+Potentially Life-Threatening,Haight Ashbury,5.366510318949343
+Potentially Life-Threatening,Hayes Valley,5.66335022263166
+Potentially Life-Threatening,Inner Richmond,5.584155455904335
+Potentially Life-Threatening,Inner Sunset,5.993981863149217
+Potentially Life-Threatening,Japantown,6.215539803707743
+Potentially Life-Threatening,Lakeshore,8.020530242472688
+Potentially Life-Threatening,Lincoln Park,7.922641509433962
+Potentially Life-Threatening,Lone Mountain/USF,5.93932527693857
+Potentially Life-Threatening,Marina,6.273510638297873
+Potentially Life-Threatening,McLaren Park,7.782222222222222
+Potentially Life-Threatening,Mission,5.310113037752415
+Potentially Life-Threatening,Mission Bay,6.40276169802219
+Potentially Life-Threatening,Nob Hill,5.329037304452467
+Potentially Life-Threatening,Noe Valley,5.754424003504161
+Potentially Life-Threatening,None,9.258843537414966
+Potentially Life-Threatening,North Beach,6.361172161172162
+Potentially Life-Threatening,Oceanview/Merced/Ingleside,6.753528945281523
+Potentially Life-Threatening,Outer Mission,6.3690579710144934
+Potentially Life-Threatening,Outer Richmond,6.508152990682296
+Potentially Life-Threatening,Pacific Heights,5.8667065390749595
+Potentially Life-Threatening,Portola,6.74475935828877
+Potentially Life-Threatening,Potrero Hill,6.0029637377963745
+Potentially Life-Threatening,Presidio,8.80929487179487
+Potentially Life-Threatening,Presidio Heights,6.09136
+Potentially Life-Threatening,Russian Hill,5.9006065857885615
+Potentially Life-Threatening,Seacliff,6.453333333333333
+Potentially Life-Threatening,South of Market,6.021341787743904
+Potentially Life-Threatening,Sunset/Parkside,7.058362102032988
+Potentially Life-Threatening,Tenderloin,5.464275619119943
+Potentially Life-Threatening,Treasure Island,11.146666666666667
+Potentially Life-Threatening,Twin Peaks,7.397691846522782
+Potentially Life-Threatening,Visitacion Valley,7.866637089618456
+Potentially Life-Threatening,West of Twin Peaks,6.3972912353347136
+Potentially Life-Threatening,Western Addition,5.763235897435897

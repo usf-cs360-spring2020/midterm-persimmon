@@ -1,0 +1,60 @@
+svg {
+    width: 960px;
+    height: 500px;
+}
+  
+svg#heatmap {
+    width: 800px;
+    height: 800px;
+}
+
+svg.barline {
+    width: 800px;
+    height: 500px;
+}
+
+#axis-title {
+    font-size: 14px;
+    fill: #4a4948;
+}
+
+#legend-title {
+    font-size: 10px;
+    fill: semiblack;
+}
+
+.x-axis line,
+.y-axis line,
+.x-axis path,
+.y-axis path {
+    fill: none;
+    stroke: none;
+}
+
+#nav-container {
+    display: flex;
+    /* justify-content: center; */
+    cursor: pointer;
+}
+
+#nav-container .left {
+    margin-right: 20px;
+}
+
+#nav-container .right {
+    margin-left: 20px;
+}
+
+rect.bordered {
+    stroke: #E6E6E6;
+    stroke-width:2px;   
+}
+
+.d3-tip {
+    line-height: 1;
+    padding: 3px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 10px;
+}
