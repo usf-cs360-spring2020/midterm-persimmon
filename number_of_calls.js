@@ -84,12 +84,6 @@ function convertRow(row, index) {
 
 // https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95
 function draw(data) {
-  let sortColumn = 'Count';
-
-  data = data.sort(function(a, b) {
-    return a[sortColumn] - b[sortColumn];
-  });
-
   let neighborhoods = d3.set(data.map(function( d ) { return d.Neighborhoood; } )).values();
 
   let callTypes = d3.set(data.map(function( d ) { return d.CallType; } )).values();
