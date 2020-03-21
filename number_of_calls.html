@@ -90,24 +90,21 @@
     <div class="container">
       <!-- Begin page content -->
       <div class="content">
-        <h1 class="title">
-          Visualization 3
-        </h1>
 
       <h4>Artist: Ahmed Kaddoura</h4>
 
       <svg id="vis"></svg>
       <script src="number_of_calls.js"></script>
 
+      <h4> Interactivity</h4>
+      <p> On mouse over of a section of the heatmap, a details on demand table will appear that shows the call type group, neighberhood name,
+        and exact value for the number of calls made for that neighborhood and call type. In addition, when a section of the heatmap is selected,
+        the corresponding section will be highlighted on the response time heatmap.
+      </p>
       <h4>Data Wrangling</h4>
       <p> This visualization uses the <a href = "FireDepartmentCallsSelected.csv"> FireDepartmentCallsSelected.csv </a> data which filtered the original
         dataset down to calls made in San Francisco in 2019. I further created a sum of the number of rows for each neighborhood and call type group. This
         sum is represented by the color in the heatmap.
-      </p>
-      <h4> Planned Interactivity</h4>
-      <p> On mouse over of a section of the heatmap, a details on demand table will appear that shows the call type group, neighberhood name,
-        and exact value for the number of calls made for that neighborhood and call type. In addition, when a section of the heatmap is selected,
-        the corresponding section will be highlighted on the response time heatmap.
       </p>
       <h4> Prototype improvements</h4>
       <p> Removed null column. Data wrangled number of rows to number of calls. Right alligned neighborhood label.
