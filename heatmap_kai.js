@@ -27,12 +27,6 @@ const barMargin = {
   right: 30
 };
 
-// plot
-let barSvg = d3.select("body").select("svg#bar");
-const barPlot = barSvg.append("g").attr("id", "barPlot")
-  .attr("transform", translate(barMargin.left, barMargin.top));
-
-
 // set scales
 let barBounds = {width: 800, height: 550};
 let barPlotWidth = barBounds.width - barMargin.right - barMargin.left;
@@ -43,21 +37,6 @@ const barScales = {
   y: d3.scaleLinear().domain([0,20]).range([barPlotHeight, 0]).nice(),
 };
 
-const yAxis = d3.axisLeft(barScales.y)
-  .ticks(5, 's').tickSizeOuter(0);
-
-let yGroup = barPlot.append("g")
-  .attr('class', 'y-axis axis')
-  .call(yAxis);
-
-const barGridAxis = d3.axisLeft(barScales.y)
-  .tickSize(-barPlotWidth - 15).tickFormat('').ticks(0);
-
-let barGridGroup = barPlot.append("g")
-  .attr("id", "grid-axis")
-  .attr('class', 'axis')
-  .call(barGridAxis);
-
 
 // heatmap setup  
 const heatMargin = {
@@ -67,40 +46,16 @@ const heatMargin = {
   right: 10
 };
 
-// plot
-let heatSvg = d3.select("body").select("svg#heatmap");
-const heatPlot = heatSvg.append("g").attr("id", "plot")
-  .attr("transform", translate(heatMargin.left, heatMargin.top));
-
 // set scales
 let heatBounds = {width: 800, height: 650}
 let heatPlotWidth = heatBounds.width - heatMargin.right - heatMargin.left;
 let heatPlotHeight = heatBounds.height - heatMargin.top - heatMargin.bottom;
 
-const heatScales = {
-  x: d3.scaleBand().range([750 - heatMargin.left - heatMargin.right, 0]),
-  y: d3.scaleBand().range([800 - heatMargin.top - heatMargin.bottom, 0]),
-  color: d3.scaleSequential(d3.interpolateOranges).domain([0, 20])
-};
-
-// heatmap tooltip
-// let heattip = d3.tip().attr('class', 'd3-tip')
-//   .direction('e').offset([0,5])
-//   .html(function(d) {
-//     content = `
-//         <table style="margin-top: 2.5px;">
-//                 <tr><td>Neighborhood: </td><td style="text-align: left">` + d['Neighborhood'] + `</td></tr>
-//                 <tr><td>Call Type Group: </td><td style="text-align: left">` + d['Call Type Group'] + `</td></tr>
-//                 <tr><td>Avg On Scene Wait Time</td><td style="text-align: left"> ` + formatter(d['Avg On Scene Wait Time']) + `</td></tr>
-//                 <tr><td>Avg Received to Dispatch Wait Time:</td><td style="text-align: left"> ` + formatter(d['Avg Received to Dispatch Wait Time']) + `</td></tr>
-//                 <tr><td>Avg Dispatch to Response Wait Time:</td><td style="text-align: left"> ` + formatter(d['Avg Dispatch to Response Wait Time']) + `</td></tr>
-//                 <tr><td>Avg Response to On Scene Wait Time:</td><td style="text-align: left"> ` + formatter(d['Avg Response to On Scene Wait Time:']) + `</td></tr>
-//         </table>`;
-//     return content;
-//   });
-
-// heatSvg.call(heattip);
-// end setup
+// const heatScales = {
+//   x: d3.scaleBand().range([750 - heatMargin.left - heatMargin.right, 0]),
+//   y: d3.scaleBand().range([800 - heatMargin.top - heatMargin.bottom, 0]),
+//   color: d3.scaleSequential(d3.interpolateOranges).domain([0, 20])
+// };
 
 // load data and then charts
 // d3.csv("data/avg_wait_times_by_call_type_neighborhood.csv", parseData).then(sortByNeighborhood).then(drawCharts);
@@ -168,18 +123,43 @@ function stackedBars(series) {
     .selectAll("rect")
     .data(d => d)
     .join("rect")
-      .attr("x", (d, i) => x(d.data['Neighborhoods']))
+      .attr("class", d => d.data['Neighborhoods'])
+      .attr("x", d => x(d.data['Neighborhoods']))
       .attr("y", d => y(d[1]))
       .attr("height", d => y(d[0]) - y(d[1]))
       .attr("width", x.bandwidth())
     .append("title")
       .text(d => `${d.data['Neighborhoods']} ${d.key}: ${formatValue(d.data[d.key])}`);
+    // .transition().delay(function(d, i) { return i*40; });
 
+  console.log(data.values);
   stackedsvg.append("g")
       .call(xAxis);
 
   stackedsvg.append("g")
       .call(yAxis);
+
+  // dynamic updates
+  // let callTypes = series.map(function(d) { return d.key; });
+  // let currentCallType = 0;
+
+  // // create location dropdown menu
+  // let callTypeMenu = d3.select("#locationDropdown");
+  // callTypeMenu.append("select")
+  //   .attr("id", "locationMenu")
+  //   .selectAll("option")
+  //   .data(callTypes).enter()
+  //   .append("option")
+  //     .attr("value", function(d, i) { return i; })
+  //     .text(function(d) { return d; });
+
+  let xTitle = stackedsvg.append('text')
+    .text('Stacked bar chart of containing the time it takes for each step in the on scene process for the alarm call group')
+      .attr('class', 'axis-title')
+      .attr('id', 'axis-title')
+      .attr('x', 10)
+      .attr('y', 75)
+      .style('text-anchor', 'center');
 
 }
 
@@ -194,7 +174,7 @@ function drawbarTitles() {
 
   let yMiddle = barMargin.top + midpoint(barScales.y.range());
 
-  let xTitle = barSvg.append('text')
+  let xTitle = barsvg.append('text')
     .text('Neighborhoods')
       .attr('class', 'axis-title')
       .attr('id', 'axis-title')
@@ -215,28 +195,6 @@ function drawbarTitles() {
     .attr('dy', 15)
     .attr('text-anchor', 'middle')
     .attr('transform', 'rotate(-90)');
-}
-
-// legend
-function drawbarLegend(){
-
-  let legendGroup = barSvg.append('g').attr('id', 'legend');
-  legendGroup.attr('transform', translate(barMargin.left - 10, 5));
-
-  let legendbox = legendGroup.append('rect')
-    .attr('x', 0)
-    .attr('y', 20)
-    .attr('width', 140)
-    .attr('height', 75)
-    .style('fill', 'none');
-
-  legendGroup.append('text')
-      .attr('class', 'legend-title')
-      .attr('id', 'legend-title')
-      .attr('x', 30)
-      .attr('y', 62)
-      .style('font-size', 14)
-      .text('Avg. Received Call to Dispatch Wait Time');
 }
 
 
@@ -600,9 +558,8 @@ function handleMouseOver(d, i) {  // Add interactivity
   heattip.show(d);
 
   // Use D3 to select element, change color and size
-  d3.selectAll('.' + classParser(d['Neighborhoods'], hoodPattern, hoodReplace))
-    .selectAll('rect')
-    .transition().duration(1)
+  d3.selectAll('rect.' + classParser(d['Neighborhoods'], hoodPattern, hoodReplace))
+    .transition()
       .style('stroke', 'blue');
       
 }
@@ -613,7 +570,7 @@ function handleMouseOut(d, i) {  // Add interactivity
   // Use D3 to select element, change color and size
   d3.selectAll('.' + classParser(d['Neighborhoods'], hoodPattern, hoodReplace))
     .selectAll('rect')
-    .transition().duration(1)
+    .transition()
       .style('stroke', '#E6E6E6');
 }
 
