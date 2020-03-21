@@ -117,6 +117,7 @@ console.log("width", width);
 
   //y.domain([0, d3.max(data, d => d3.sum(myKeys, k => +d[k]))]).nice();
   x.domain(data.map(function(d) { return d.Neighborboods; }));
+  x.domain(neighborhoods);
   y.domain([0, d3.max(data, function(d) { return d.WithALSUnit; })]);
   // x domain is the Neighborhoods column
   //x.domain(data.map(d => d.Neighborhoods));
