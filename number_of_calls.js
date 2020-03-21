@@ -1,4 +1,3 @@
-// https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95
 let config = {
   'svg': {},
   'margin': {},
@@ -83,7 +82,14 @@ function convertRow(row, index) {
   return out;
 }
 
+// https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95
 function draw(data) {
+  let sortColumn = 'Count';
+
+  data = data.sort(function(a, b) {
+    return a[sortColumn] - b[sortColumn];
+  });
+
   let neighborhoods = d3.set(data.map(function( d ) { return d.Neighborhoood; } )).values();
 
   let callTypes = d3.set(data.map(function( d ) { return d.CallType; } )).values();
@@ -218,7 +224,7 @@ function drawTitles() {
   let x = svg.append("text")
     .text("Call Type")
     .attr("id", "axisTitle")
-    .attr("x", 500)
+    .attr("x", 510)
     .attr("y", 480)
     .attr("font-size", "16px")
     .attr("font-weight", "bold");
