@@ -4,11 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
     <title>Persimmon</title>
 
     <!-- Load Bulma from CDN (consider saving it to repository instead) -->
     <!-- https://bulma.io/ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" href="number_of_calls.css">
 
     <!-- Load Font Awesome 5 (free) icons -->
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
@@ -22,18 +25,17 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">Persimmon</h1>
-        <h2 class="subtitle">Welcome to Team Persimmon's Data Visualization Midterm Project!</h2>
+        <h2 class="subtitle">Welcome to the home of team Persimmon's data visualization midterm project!</h2>
       </div>
     </div>
   </section>
   <!-- End page header -->
-
   <!-- Page navigation -->
   <!-- https://bulma.io/documentation/components/navbar/ -->
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item is-active" href="index.html">
+        <a class="navbar-item" href="index.html">
           <span class="icon"><i class="fas fa-home"></i></span>
           <span>Home</span>
         </a>
@@ -89,7 +91,7 @@
                 <span class="icon"><i class="fas fa-chart-bar"></i></span>
                 <span>Response Time</span>
               </a>
-              <a class = "navbar-item" href = "number_of_calls.html" title = "Number of Calls">
+              <a class = "navbar-item is-active" href = "number_of_calls.html" title = "Number of Calls">
                 <span class="icon"><i class="fas fa-chart-bar"></i></span>
                 <span>Number of Calls</span>
               </a>
@@ -113,23 +115,43 @@
     <div class="container">
       <!-- Begin page content -->
       <div class="content">
-        <h1 class="title">
-          Visualizing San Francisco Fire Department Calls for Service
-        </h1>
-        <p>
-          For this project, we will use the <a href="https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3">Fire Department Calls for Service</a> dataset from DataSF. Our focus is neighborhood data to visualize with respect to
-          response time and quality of response from the fire department. Visuals will investigate a number of groups across neighborhoods including: unit type, station area, ALS unit, call type group, dispatch, response, and on scene time.
-          We are interested in comparing dispatch times between San Francisco neighberhoods and determining whether certain neighborhoods receive faster dispatch as well as measuring how effective the responses are.
-        </p>
-        <p>Learn more about the dataset on our <a href="dataset.html">data page</a>.
-          <br>
-          Learn more about our team on our <a href="about.html">about page.</a>
-        </p>
+
+      <h3>Artist: Ahmed Kaddoura</h4>
+
+      <svg id="vis"></svg>
+      <script src="number_of_calls.js"></script>
+
+      <h4>Data Encoding</h4>
+      <p> This is a heatmap which encodes the number of calls made to the SF Fire Department from each neighberhood and call type group. An orange
+        color scale is used, and the darker orange a cell is, the more calls of that type were made from that San Francisco neighberhood.
+      </p>
+      <h4>Interactivity</h4>
+      <p> To interact with the visualization, hover your mouse over a cell in the heatmap. When you hover over a cell, a details on demand table
+        will appear that shows the call type group, neighberhood name, and exact value for the number of calls made for that neighborhood and call
+        type. In addition, hovering over a specific cell will highlight it in the heatmap with a grey outline so you know which cell the
+        tooltip corresponds to.
+      </p>
+      <h4>Findings</h4>
+      <p>A finding that can be learned from this visualization is that in all San Francisco neighberhoods, more non-lfe threatening and potentially
+        life-threatening calls are made to the fire department than alarm and fire calls. This finding contributes to our theme by helping contextualize
+        the response time and quality of response for each neighberhood. While the number of calls from each neighberhood is correlated with the
+        number of people living in each neighberhood, this visualization can be used along with the response time visualization to get a better picture
+        of the different needs each neighberhood has from the fire department. For example, while the South of Market and Tenderloin neighberhoods make
+        significantly more calls to the fire department for non-lfe threatening and potentially life-threatening than they do for alarms, the Financial
+        District/South Beach neighberhood makes a number of alarm calls that is much closer to the number of non-lfe threatening and potentially
+        life-threatening calls.
+      </p>
+      <h4>Inspiration</h4>
+      <p> The functionanlity of this heatmap was inspired by <a  href="https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95"> this heatmap visualization</a> by Sophie Engle.
+      <br>
+        The interactivity of this heatmap was inspired by <a href="https://observablehq.com/@sjengle/interactivity?collection=@sjengle/interactive-scatterplot"> this example</a> by Sophie Engle.
+      <br>
+        The color legend of this heatmap is inspired by <a href="https://bl.ocks.org/mbostock/1086421"> this linear gradient example</a> by Mike Bostock.
+      </p>
       </div>
       <!-- End page content -->
     </div>
   </section>
-
   <!-- Page footer -->
   <!-- https://bulma.io/documentation/layout/footer/ -->
   <footer class="footer">
@@ -180,5 +202,4 @@
   </script>
   <!-- End mobile menu responsiveness -->
   </body>
-
 </html>

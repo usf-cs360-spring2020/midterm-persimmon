@@ -1,0 +1,6 @@
+.tooltip {
+  position: absolute;
+  text-align: left;
+  padding: 5px;
+  background: #d3d3d3;
+}
