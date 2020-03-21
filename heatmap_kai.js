@@ -34,13 +34,13 @@ const barPlot = barSvg.append("g").attr("id", "barPlot")
 
 
 // set scales
-let barBounds = {width: 800, height: 500};
+let barBounds = {width: 800, height: 550};
 let barPlotWidth = barBounds.width - barMargin.right - barMargin.left;
 let barPlotHeight = barBounds.height - barMargin.top - barMargin.bottom;
 
 const barScales = {
   x: d3.scaleBand().range([750 - barMargin.left - barMargin.right, 0]),
-  y: d3.scaleLinear().domain([0,8]).range([barPlotHeight, 0]).nice(),
+  y: d3.scaleLinear().domain([0,20]).range([barPlotHeight, 0]).nice(),
 };
 
 const yAxis = d3.axisLeft(barScales.y)
@@ -99,11 +99,98 @@ let heattip = d3.tip().attr('class', 'd3-tip')
     return content;
   });
 
-heatSvg.call(heattip);
+// heatSvg.call(heattip);
 // end setup
 
 // load data and then charts
-d3.csv("data/avg_wait_times_by_call_type_neighborhood.csv", parseData).then(sortByNeighborhood).then(drawCharts);
+// d3.csv("data/avg_wait_times_by_call_type_neighborhood.csv", parseData).then(sortByNeighborhood).then(drawCharts);
+d3.csv("data/avg_wait_times_by_call_type_neighborhood.csv", 
+  (d, i, columns) => (d3.autoType(d))).then((data) => { return data.sort((a, b) => b['"Neighborhoods"'] - a['"Neighborhoods"']); })
+  .then((data) => { return d3.nest().key(function(d) { return d['Call Type Group']; }).entries(data) ;})
+  .then(groupData)
+  .then(drawCharts);
+
+
+function groupData(data) {
+  let new_data = data.map(_groupData);
+  
+  function _groupData(callGroup,i) {
+    let new_d = {key: callGroup.key, values: d3.stack().keys(Object.keys(callGroup.values[0]).slice(-4))(callGroup.values).map(d => (d.forEach(v => v.key = d.key), d))};
+    return new_d;
+  }
+  return new_data;
+}
+
+function stackedBars(series) {
+  // stacked barchart inspired by: https://observablehq.com/@d3/stacked-bar-chart
+  // console.log(series.filter());
+  // console.log(series[0].values[3].map((d) => d.data['Avg On Scene Wait Time']));
+  // console.log(d3.max(series[0].values[0].map((d) => d.data['Avg On Scene Wait Time'])));
+
+  let data = series.find(function(d) { return d.key == 'Alarm' });
+
+  let x = d3.scaleBand()
+    .domain(series[0].values[0].map((d) => d.data['Neighborhoods']))
+    .range([barMargin.left, barBounds.width - barMargin.right])
+    .padding(0.1);
+
+  let y = d3.scaleLinear()
+    .domain([0, d3.max(data.values, d => d3.max(d, d => d[1]))])
+    .rangeRound([barBounds.height - barMargin.bottom, barMargin.top]);
+
+  let color = d3.scaleOrdinal()
+    .domain(data.values.map(d => d.key))
+    .range(d3.schemeSpectral[data.values.length])
+    .unknown("#ccc")
+
+  let formatValue = x => isNaN(x) ? "N/A" : x.toLocaleString("en");
+
+  let xAxis = g => g
+    .attr("transform", `translate(0,${barBounds.height - barMargin.bottom})`)
+    .call(d3.axisBottom(x).tickSizeOuter(0))
+    .selectAll("text")
+      .attr("y", 0)
+      .attr("x", -5)
+      .attr("dy", ".35em")
+      .attr("transform", "rotate(-90)")
+      .style("text-anchor", "end");
+
+  let yAxis = g => g
+    .attr("transform", `translate(${barMargin.left},0)`)
+    .call(d3.axisLeft(y).ticks(null, "s"));
+
+  const stackedsvg = d3.select("#barcharts").append("svg")
+    .attr("width", barBounds.width)
+    .attr("height", barBounds.height);
+
+  stackedsvg.append("g")
+    .selectAll("g")
+    .data(data.values)
+    .join("g")
+      .attr("fill", d => color(d.key))
+    .selectAll("rect")
+    .data(d => d)
+    .join("rect")
+      .attr("x", (d, i) => x(d.data['Neighborhoods']))
+      .attr("y", d => y(d[1]))
+      .attr("height", d => y(d[0]) - y(d[1]))
+      .attr("width", x.bandwidth())
+    .append("title")
+      .text(d => `${d.data['Neighborhoods']} ${d.key}: ${formatValue(d.data[d.key])}`);
+
+  stackedsvg.append("g")
+      .call(xAxis);
+
+  stackedsvg.append("g")
+      .call(yAxis);
+
+}
+
+
+
+function processData(data) {
+
+};
 
 // axis
 function drawbarTitles() {
@@ -159,7 +246,7 @@ function drawbarLegend(){
 // draw charts
 function drawCharts(data) {
   // setup
-  drawbarCharts(data);
+  stackedBars(data);
   drawHeatmap(data);
 }
 
@@ -189,7 +276,7 @@ function drawbarCharts(data) {
 
   // group data by call type group
   let nest = d3.nest()
-    .key(function(d) { return d.callType; })
+    .key(function(d) { return d['Call Type Group']; })
     .entries(data);
 
   // array of call type group data
@@ -359,43 +446,50 @@ function drawHeatLegend(){
 
 
 // draw heatmap
-function drawHeatmap(data) {
+function drawHeatmap(series) {
 
-  // axis
-  let callTypeGroups = data.map(row => row.callType);
-  heatScales.x.domain(callTypeGroups);
+  let data = series.find(function(d) { return d.key == 'Alarm' });
+  console.log(series);
 
-  let neighborhoods = data.map(row => row.neighborhoods);
-  heatScales.y.domain(neighborhoods);
+  let x = d3.scaleBand()
+    .domain(series[0].values[0].map((d) => d.data['Neighborhoods']))
+    .range([heatMargin.left, heatBounds.width - heatMargin.right])
+    .padding(0.1);
 
-  let xAxis = d3.axisTop(heatScales.x).tickPadding(0).tickSizeOuter(0);
-  let yAxis = d3.axisRight(heatScales.y).tickPadding(0).tickSizeOuter(0);
+  let y = d3.scaleLinear()
+    .domain([0, d3.max(data.values, d => d3.max(d, d => d[1]))])
+    .rangeRound([heatBounds.height - heatMargin.bottom, heatMargin.top]);
 
-  let xGroup = heatPlot.append("g")
-    .attr('class', 'x-axis axis')
-    .attr('transform', translate(0, heatMargin.top - 120))
-    .call(xAxis);
+  let color = d3.scaleSequential(d3.interpolateOranges)
+    .domain([0, 20]);
 
-  let yGroup = heatPlot.append("g")
-    .attr('class', 'y-axis axis')
-    .attr('transform', translate(-160, 0))
-    .call(yAxis);
+  let formatValue = x => isNaN(x) ? "N/A" : x.toLocaleString("en");
 
-  drawHeatTitles();
-  drawHeatLegend();
-  // d3.select(this).classed("cell-hover",true);
-  
-  heatSvg.call(heattip);
-  
-  let cells = heatPlot.selectAll('.heatcells')
-    .data(data, function(d) { return d; });
-  
-  cells.append('title');
-   
-  cells.enter()
-    .append('g')
-      .attr("class", d => classParser(d.neighborhoods, hoodPattern, hoodReplace))
-    .append("rect")
+  let xAxis = g => g
+    .attr("transform", `translate(0,${heatBounds.height - heatMargin.bottom})`)
+    .call(d3.axisBottom(x).tickSizeOuter(0))
+    .selectAll("text")
+      .attr("y", 0)
+      .attr("x", -5)
+      .attr("dy", ".35em")
+      .attr("transform", "rotate(-90)")
+      .style("text-anchor", "end");
+
+  let yAxis = g => g
+    .attr("transform", `translate(${barMargin.left},0)`)
+    .call(d3.axisLeft(y).ticks(null, "s"));
+
+  const heatsvg = d3.select("#heatmap").append("svg")
+    .attr("width", heatBounds.width)
+    .attr("height", heatBounds.height);
+
+  heatsvg.append("g")
+    .selectAll("g")
+    .data(series)
+    .join("g")
+    .selectAll("rect")
+    .data()
+    .join('rect')
       .attr('class', 'heatcells bordered')
       .attr("x", d => heatScales.x(d.callType))
       .attr("y", d => heatScales.y(d.neighborhoods))
@@ -404,14 +498,63 @@ function drawHeatmap(data) {
       .style("fill", d => heatScales.color(d.onTime.value))
     .on('mouseover', handleMouseOver)
     .on('mouseout', handleMouseOut);
+
+
+
+
+
+
+  // axis
+  // let callTypeGroups = data.map(row => row.callType);
+  // heatScales.x.domain(callTypeGroups);
+
+  // let neighborhoods = data.map(row => row.neighborhoods);
+  // heatScales.y.domain(neighborhoods);
+
+  // let xAxis = d3.axisTop(heatScales.x).tickPadding(0).tickSizeOuter(0);
+  // let yAxis = d3.axisRight(heatScales.y).tickPadding(0).tickSizeOuter(0);
+
+  // let xGroup = heatPlot.append("g")
+  //   .attr('class', 'x-axis axis')
+  //   .attr('transform', translate(0, heatMargin.top - 120))
+  //   .call(xAxis);
+
+  // let yGroup = heatPlot.append("g")
+  //   .attr('class', 'y-axis axis')
+  //   .attr('transform', translate(-160, 0))
+  //   .call(yAxis);
+
+  // drawHeatTitles();
+  // drawHeatLegend();
+  // // d3.select(this).classed("cell-hover",true);
   
-  cells.transition().duration(1000)
-    .style('fill', d => heatScales.color(d.onTime.value));
+  // heatSvg.call(heattip);
   
-  cells.select('title')
-    .text(d => d.neighborhoods);
+  // let cells = heatPlot.selectAll('.heatcells')
+  //   .data(data, function(d) { return d; });
   
-  cells.exit().remove();
+  // cells.append('title');
+   
+  // cells.enter()
+  //   .append('g')
+  //     .attr("class", d => classParser(d.neighborhoods, hoodPattern, hoodReplace))
+  //   .append("rect")
+  //     .attr('class', 'heatcells bordered')
+  //     .attr("x", d => heatScales.x(d.callType))
+  //     .attr("y", d => heatScales.y(d.neighborhoods))
+  //     .attr("width", heatScales.x.bandwidth())
+  //     .attr("height", heatScales.y.bandwidth())
+  //     .style("fill", d => heatScales.color(d.onTime.value))
+  //   .on('mouseover', handleMouseOver)
+  //   .on('mouseout', handleMouseOut);
+  
+  // cells.transition().duration(1000)
+  //   .style('fill', d => heatScales.color(d.onTime.value));
+  
+  // cells.select('title')
+  //   .text(d => d.neighborhoods);
+  
+  // cells.exit().remove();
 }
 
 
