@@ -31,6 +31,7 @@ function convertRow(row) {
 } // convertRow
 console.log("barSeries", barSeries);
 
+// inspiration: https://bl.ocks.org/LemoNode/5a64865728c6059ed89388b5f83d6b67
 function stackBar(data) {
   var width = 960;
   var height = 500;

@@ -59,7 +59,7 @@ let barGridGroup = barPlot.append("g")
   .call(barGridAxis);
 
 
-// heatmap setup  
+// heatmap setup
 const heatMargin = {
   top: 120,
   bottom: 10,
@@ -104,7 +104,7 @@ let heattip = d3.tip().attr('class', 'd3-tip')
 
 // load data and then charts
 // d3.csv("data/avg_wait_times_by_call_type_neighborhood.csv", parseData).then(sortByNeighborhood).then(drawCharts);
-d3.csv("data/avg_wait_times_by_call_type_neighborhood.csv", 
+d3.csv("data/avg_wait_times_by_call_type_neighborhood.csv",
   (d, i, columns) => (d3.autoType(d))).then((data) => { return data.sort((a, b) => b['"Neighborhoods"'] - a['"Neighborhoods"']); })
   .then((data) => { return d3.nest().key(function(d) { return d['Call Type Group']; }).entries(data) ;})
   .then(groupData)
@@ -113,11 +113,13 @@ d3.csv("data/avg_wait_times_by_call_type_neighborhood.csv",
 
 function groupData(data) {
   let new_data = data.map(_groupData);
-  
+  console.log("new_data", new_data);
   function _groupData(callGroup,i) {
     let new_d = {key: callGroup.key, values: d3.stack().keys(Object.keys(callGroup.values[0]).slice(-4))(callGroup.values).map(d => (d.forEach(v => v.key = d.key), d))};
+    console.log("new_d", new_d);
     return new_d;
   }
+  console.log("new_data", new_data);
   return new_data;
 }
 
@@ -126,7 +128,7 @@ function stackedBars(series) {
   // console.log(series.filter());
   // console.log(series[0].values[3].map((d) => d.data['Avg On Scene Wait Time']));
   // console.log(d3.max(series[0].values[0].map((d) => d.data['Avg On Scene Wait Time'])));
-
+  console.log("series", series);
   let data = series.find(function(d) { return d.key == 'Alarm' });
 
   let x = d3.scaleBand()
@@ -255,7 +257,7 @@ function drawbarCharts(data) {
   // axis
   let neighborhoods = data.map(row => row.neighborhoods);
   barScales.x.domain(neighborhoods);
-  
+
   let xAxis = d3.axisBottom(barScales.x).tickPadding(0).tickSizeOuter(0);
   let xGroup = barPlot.append("g").attr('class', 'xgroup');
 
@@ -303,7 +305,7 @@ function drawbarCharts(data) {
       currentCallType = selectedCallType;
     // run update function with selected location
     _updateBarChart(callTypes[currentCallType]);
-  });  
+  });
 
   // filter the data to return object of location of interest
   let selectedCallType = nest.find(function(d) { return d.key == 'Alarm' });
@@ -336,7 +338,7 @@ function drawbarCharts(data) {
       .transition().duration(30)
         .style("fill", "#FDAF6E")
         .style('opacity', 0.9);
-    
+
     rects.exit().remove();
   }
 
@@ -345,18 +347,18 @@ function drawbarCharts(data) {
       if(currentCallType == 0) {
         currentCallType = callTypes.length-1;
       } else {
-        currentCallType--;  
+        currentCallType--;
       }
     } else if(d3.select(this).classed("right")) {
       if(currentCallType == callTypes.length-1) {
         currentCallType = 0;
       } else {
-        currentCallType++;  
+        currentCallType++;
       }
     }
     d3.select("#locationMenu").property("value", currentCallType);
     _updateBarChart(callTypes[currentCallType]);
-  }); 
+  });
 
 }
 // end bar/line chart section
@@ -407,7 +409,7 @@ function drawHeatLegend(){
     .attr('dy', 12);
 
   const colorDomain = [d3.min(heatScales.color.domain()), d3.max(heatScales.color.domain())];
-  
+
   heatScales.percent = d3.scaleLinear()
     .range([0, 100])
     .domain(colorDomain);
@@ -527,14 +529,14 @@ function drawHeatmap(series) {
   // drawHeatTitles();
   // drawHeatLegend();
   // // d3.select(this).classed("cell-hover",true);
-  
+
   // heatSvg.call(heattip);
-  
+
   // let cells = heatPlot.selectAll('.heatcells')
   //   .data(data, function(d) { return d; });
-  
+
   // cells.append('title');
-   
+
   // cells.enter()
   //   .append('g')
   //     .attr("class", d => classParser(d.neighborhoods, hoodPattern, hoodReplace))
@@ -547,13 +549,13 @@ function drawHeatmap(series) {
   //     .style("fill", d => heatScales.color(d.onTime.value))
   //   .on('mouseover', handleMouseOver)
   //   .on('mouseout', handleMouseOut);
-  
+
   // cells.transition().duration(1000)
   //   .style('fill', d => heatScales.color(d.onTime.value));
-  
+
   // cells.select('title')
   //   .text(d => d.neighborhoods);
-  
+
   // cells.exit().remove();
 }
 
@@ -567,7 +569,7 @@ function handleMouseOver(d, i) {  // Add interactivity
     .selectAll('rect')
     .transition().duration(5)
       .style('stroke', 'blue');
-      
+
 }
 
 // Create Event Handlers for mouse
@@ -600,4 +602,3 @@ function parseData(row){
 
   return values;
 }
-
